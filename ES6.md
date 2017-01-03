@@ -325,7 +325,6 @@ o.fun(); // 2
 - For everything else - normal function declarations, longer multistatement function expressions, functions that need a lexical name identifier self-reference(recursion, etc.), and any other function that does't fit the previous characteristics - you should probably avoid => function syntax
 
 
-
 ## Regular Expressions 
 
 - Unicode Flag
@@ -391,6 +390,7 @@ arr; ['a', 'b', 'c', 'd'];
 ```
 
 **for .. of**
+
 loops over the set of values produced by an iterator.
 Standad built-in values in JavaScript that are by default iterables(or provide them) include:
  * Array
@@ -500,6 +500,7 @@ import { data } from './data.js'
 - 新关键字, `class, constructor, extends, super, static`
 
 **class**
+
 - Class methods use the same “concise method” syntax available to object literal.
 - All methods are nonenumerable.
 - Class declarations are `not hoisted`
@@ -510,6 +511,7 @@ import { data } from './data.js'
 
 
 **super**
+
 - `super` is not limited to class declarations. It also works in object literals,
 - `super` is not dynamic like `this` is. When a constructor or method makes a super reference inside it at declaration time (in the class body), that super is statically bound to that specific class hierarchy, and cannot be overridden
 - the default subclass constructor `automatically` calls the parent constructor(with super), and passes along any arguments.
@@ -518,12 +520,14 @@ import { data } from './data.js'
 - The only way to avoid calling super() is to return an object from the class constructor.
 
 **static**
+
 - `Static` members are not accessible from instances. You must always access static members from the class directly.
 - If a base class has `static` members, those static members are also available on the derived class.
 
 - `new.target` always points at the constructor that new actually directly invoked, even if the constructor is in a parent class and was delegated to by a super(..) call from a child constructor.
 
 **inheritance**
+
 - In ECMAScript 5 classical inheritance, the value of `this` is first created by the derived type and then the base type constructor is called. That means `this` starts out as an instance of derived class and then is decorated with additional properties from base class.
 - in ECMAScript 6 class-based inheritance, the value of `this` is first created by the base and then modified by the derived class constructor. The result is that `this` starts with all the built-in func- tionality of the base and correctly receives all functionality related to it.
 
@@ -719,15 +723,15 @@ console.log(array);             // [1,2,3,4,5]
  - Unicode Functions 
  
  
-
-
 ## ES2016
+
 - ** Exponentiation Operator 
 - Array.prototype.includes
 - 'use stric' in function limitation
 
 
 ## ES2017
+
 - Object.values()
 - Object.entries()
 - Object.getOwnPropertyDescriptors
@@ -739,6 +743,7 @@ console.log(array);             // [1,2,3,4,5]
 - async function
 
 ## ES2018
+
 https://github.com/tc39/proposals
 
 - ... Object spread operator(stage-3)

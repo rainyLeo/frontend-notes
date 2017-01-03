@@ -3,9 +3,6 @@ Boxes in the normal flow belong to a formatting context, which may be block or i
 
 # Box model
 
-
-
-
 # Visual formatting model
 
 ** Introduction**

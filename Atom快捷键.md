@@ -14,6 +14,7 @@
 `cmd-r` 在函数之间跳转
 
 ## 编辑  
+
 `cmd-enter` 在下方新建一行  
 `shift-cmd-enter` 在上方新建一行  
 `ctrl-shift-D` 复制当前行  
@@ -53,6 +54,7 @@ ctrl-cmd-M 选中括号内内容
 ## 软件界面  
   
 ###目录树  
+
 `cmd-\`  显示(隐藏)目录树  
 `ctrl-0` 焦点切换到目录树(再按一次返回)   
 `k` 上移  
@@ -78,13 +80,15 @@ ctrl-cmd-M 选中括号内内容
 `ctrl-shift-s` 保存所有打开的文件  
 `cmd-shift-o`  打开目录   
  
-### 多行光标  
+### 多行光标 
+ 
 `cmd-click` 增加新光标  
 `cmd-d` 选取文档中和当前单词相同的下一处  
 `ctrl-cmd-g` 选取文档中所有和当前光标单词相同的位置  
 `ctrl-shift-up/down` 在上方／下方增加光标
 
 ### 书签
+
 `cmd-F2` 在本行增加书签  
 `F2` 跳到当前文件的下一条书签  
 `shift-F2` 跳到当前文件的上一条书签  
@@ -92,10 +96,12 @@ ctrl-cmd-M 选中括号内内容
 
 
 ### 括号跳转  
+
 `ctrl-m` 在括号和html-tag等之间跳转  
 `ctrl-cmd-m` 括号(tag)之间文本选取  
 
 ### 查找和替换  
+
 `cmd-f` 在当前文件中查找  
 `cmd-shift-f` 在整个工程中查找  
 `cmd-g` 找到下一个  
@@ -111,7 +117,8 @@ ctrl-cmd-M 选中括号内内容
 `alt-cmd-shift-[` 折叠全部  
  `alt-cmd-shift-]` `cmd-k cmd-0` 展开全部 
 
-### 其它  
+### 其它 
+ 
 `cmd-,` 打开Atom设置  
 `cmd-y` 重复操作  
 `cmd-z` 取消操作     

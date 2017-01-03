@@ -1,4 +1,5 @@
 ### Webpack
+
 Webpack at its core, is a code bundler.It takes your code, transforms and bundles it, then returns a brand new version of your code.
 
 there are three main steps Webpack needs no know.
@@ -22,6 +23,7 @@ new webpack.optimize.UglifyJsPlugin({
 ```
 
 ### Command 
+
 `webpack`
 `webpack-dev-server`
 `--content-base src` 设置index.html的目录, include the folder
@@ -29,6 +31,7 @@ new webpack.optimize.UglifyJsPlugin({
 `--hot` live reload
 
 ### Tips 
+
 - Webpack configurations file: `webpack.config.js` should be located in the root directory of our project
 - entry: `./` 不能少, 否则 ERROR in multi main
 
@@ -119,7 +122,6 @@ module: {
 		{test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"}
 	]
 }
-
 
 ```
 

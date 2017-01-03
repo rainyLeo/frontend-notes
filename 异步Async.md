@@ -12,8 +12,6 @@ console.log("Hi!");
 
 ```
 
-
-
 ## Book << You don't konw JS (Async and performance) >>
 
 two major categories of deficiencies with using callbacks to express program asynchrony and manage concurrency: lack of sequentiality and lack of trustability.
@@ -70,8 +68,6 @@ When you return something from a `then()` callback, it's a bit magic. If you ret
 Rejections happen when a promise is explicitly rejected, but also implicitly if an error is thrown in the constructor callback:
 
 ---
-
-
 
 
 ### Promise API 

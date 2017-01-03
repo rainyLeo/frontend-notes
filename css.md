@@ -319,6 +319,8 @@ em: base text size. 1em == 100%. font-size 的 em 参照父元素 font-size, 其
 
 rem: root em, text size of the root element(html), 避免了 percentage 和 em 的多层继承问题. 
 
+Font Size Idea: px at the Root, rem for Components, em for Text Elements
+
 ## 属性
 
 line-height: 默认值 120%

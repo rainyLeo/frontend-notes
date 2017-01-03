@@ -1,4 +1,3 @@
-       
 
 ### Execution context(activation record)
 
@@ -114,6 +113,7 @@ This would normally be the case upon exiting an execution context. The scope cha
 
 
 ### this
+
 - this永远指向函数运行时所在的对象, 而不是函数创建时所在的对象
 - 匿名函数和不处于任何对象中的函数, this指向window, (非严格模式)
 - call, apply, bind, with中的参数

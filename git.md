@@ -1,59 +1,139 @@
 
+Git thinks of its data more like a set of snapshots of a miniature filesystem. Every time you commit, or save the state of your project in Git, it basically takes a picture of what all your files look like at that moment and stores a reference to that snapshot. To be efficient, if files have not changed, Git doesn’t store the file again, just a link to the previous identical file it has already stored. Git thinks about its data more like a stream of snapshots.
+
+The mechanism that Git uses for this checksumming is called a SHA-1 hash. This is a 40-character string composed of hexadecimal characters (0–9 and a–f) and calculated based on the contents of a file or directory structure in Git.
+In fact, Git stores everything in its database not by file name but by the hash value of its contents.
+
+Git has three main states that your files can reside in: committed, modified, and staged. Committed means that the data is safely stored in your local database. Modified means that you have changed the file but have not committed it to your database yet. Staged means that you have marked a modified file in its current version to go into your next commit snapshot.
+ 
+objects 目录存储所有数据内容，refs 目录存储指向数据 (分支) 的提交对象的指针，HEAD 文件指向当前分支，index 文件保存了暂存区域信息
+
+$ git help <verb> 
+$ git <verb> --help 
+$ man git-<verb>
+
 
 - `git init`
 	Create an empty Git repository or reinitialize an existing one
+	
 - `git add`
 	Add file contents to the index. This command updates the index using the current content found in the working tree, to prepare the content staged for the next commit
 	
 	`git add .`: add all the files in the directory and all subdirectories
 	-A: Update the index not only where the working tree has a file matching <pathspec> but also where the index already has an entry. If no <pathspec> is given when -A option is used, all files in the entire working tree are updated
+	
 - `git commit`
 	Record changes to the repository.Stores the current contents of the index in a new commit along with a log message from the user describing the change
 	
-	-m 'msg': Use the given 'msg' as the commit message
-- `git push`
+	`-m 'msg'`: Use the given 'msg' as the commit message
+	
+	
+	
+	
+- `git push [remote-repo-name] [branch-name]`
 	Updates remote refs using local refs, while sending objects necessary to complete the given refs.
 	
+	如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令
+	`git push origin master`
+	
+	只有在所克隆的服务器上有写权限，或者同一时刻没有其他人在推数据，这条命令才会如期完成任务。如果在你推数据前，已经有其他人推送了若干更新，那你的推送操作就会被驳回。你必须先把他们的更新抓取到本地，合并到自己的项目中，然后才可以再次推送
+	
 	-f(--force): Usually, the command refuses to update a remote ref that is not an ancestor of the local ref used to overwrite it.This flag disables these checks, and can cause the remote repository to lose commits 
+	
 - `git clone`
 	Clone a repository into a new directory
-- `git fetch`
+	
+- `git fetch [remote-name]`
 	Download objects and refs from another repository
+	
+	如果是克隆了一个仓库，此命令会自动将远程仓库归于 origin 名下。所以，git fetch origin 会抓取从你上次克隆以来别人上传到此远程仓库中的所有更新（或是上次 fetch 以来别人提交的更新）。有一点很重要，需要记住，fetch 命令只是将远端的数据拉到本地仓库，并不自动合并到当前工作分支，只有当你确实准备好了，才能手工合并。
+	
 - `git status`
 	Show the working tree status.
+	
 - `git diff`
 	Show changes between commits, commit and working tree, etc
+	
+	git diff by itself doesn’t show all changes made since your last commit – only changes that are still unstaged
+	
+	`git diff --cached`
+	
 - `git log`
 	Show commit logs
+	`git log -p` 展开每次提交的内容差异
+	`git log -2` 显示最近的2次更新
+	`git log --stat`
+	`git log --pretty=format:"%h - %an, %ar : %s"`
+	`git log --pretty=format:"%h %s" --graph`
+	`git log --oneline --decorate --graph --all`
+	
 - `git reflog`
+
 - `git reset`
 	Reset current HEAD to the specified state
+	
 - `git rm`
 	Remove files from the working tree and from the index
 	
-	git rm --cached:  removes the file from the index and leaves it in the working directory
+	`git rm --cached`:  removes the file from the index/staging area and leaves it in the working directory, keep the file on your hard drive but not have Git track it anymore
+	
 - `git remote`
 	Manage the set of repositories ("remotes") whose branches you track.
+	
+	`git remote -v`
+	shows you the URLs that Git has stored for the shortname to be used when reading and writing to that remote
+	
+	`git remote add [shortname] [url]`
+	添加一个新的远程仓库，指定一个名字
+	
+	`git remote show [remote-name]` 
+	查看某个远程仓库的详细信息
+	
 - `git pull`
 	Fetch from and integrate with another repository or a local branch.
 	Incorporates changes from a remote repository into the current branch. In its default mode, git pull is shorthand for `git fetch` followed by `git merge FETCH_HEAD`.
+	
 - `git branch`
 	List, create, or delete branches
+	
+	`git branch -d [branchName]`
+	delete local branch
+	
+	`git push origin :[branchName]`
+	delete remote branch
+	
+	`git branch -v`
+	查看各个分支最后一个提交对象的信息
+
+	
+	HEAD: 一个指向你正在工作中的本地分支的指针（将 HEAD 想象为当前分支的别名)
+	
 - `git tag`
 	Create, list, delete or verify a tag object signed with GPG.
 	Add a tag reference in refs/tags/, unless -d/-l/-v is given to delete, list or verify tags.
+	
 - `git rebase`
+
 	Reapply commits on top of another base tip.
 	If <branch> is specified, git rebase will perform an automatic `git checkout <branch>` before doing anything else. Otherwise it remains on the current branch.
+	
 - `git checkout`
 	Switch branches or restore working tree files
+	
+	`git checkout -b [branchname]`
+	add new branch and checkout
+	
 - `git merge`
 	Join two or more development histories together.
 	Incorporates changes from the named commits (since the time their histories diverged from the current branch) into the current branch.
 
+- `git mv`
+	Move or rename a file, a directory, or a symlink
+
+
 `<refspec>`
 `HEAD`: HEAD always refers to the most recent commit on the current branch. When you change branches, HEAD is updated to refer to the new branch’s latest commit
-
+`origin` – that is the default name Git gives to the server you cloned from:
 `git commit -m "Fixed a typo."` == `git commit --message="Fixed a typo."` 
 
 新项目
@@ -68,6 +148,8 @@
 `git commit -m 'Add Something'`
 `git push`
 
+`git commit -a -m 'add something'`
+
 增加 branch
 `git branch myBranch`
 `git checkout myBranch`
@@ -76,9 +158,26 @@ Merge
 `git checkout master` 切换到 master
 `git merge myBranch`
 
-Undo Last commit
-1. `git revert` (new ID)
-2. `git reset` (local only)
+
+
+Undoing 
+	* re-commit
+	```
+	git commit -m 'initial commit'
+	git add forgotten_file
+	git commit --amend
+	```
+	第二个提交命令修正了第一个的提交内容
+	
+	* Unstaging a Staged File
+	`git reset HEAD [filename]`
+	
+	* Unmodifying a Modified File
+	`git checkout -- [filename]`
+	
+	* undo Last commit
+	`git revert` (new ID)
+	`git reset` (local only)
 
 
 Git Conflit

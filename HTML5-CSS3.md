@@ -4,13 +4,7 @@
 `article` 
 `section` 
 `footer`
-
-`<main>`
-
-
-
-
-
+`main`
 
 
 #CSS3 
@@ -85,6 +79,7 @@
     <p>Target</p>
 </div>
 ```
+
 p:nth-child(2) : <p>Paragraph</p>
 p:nth-of-type(2): <p>Target</p>
 

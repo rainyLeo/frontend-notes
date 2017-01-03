@@ -29,10 +29,12 @@ telling the browser the width of the layout viewport should be equal to the devi
 * batch updates to avoid having mutiple layout events
 
 ## Paint
+
 Putting pixels on the page 
 
 
 ## Example
+
 ```html
 <!DOCTYPE HTML>
 <head>
@@ -57,7 +59,9 @@ Putting pixels on the page
 You can't optimize what you can't measure
 
 pagespeed website
+
 ## Optimizing the DOM
+
 * minimy
 * compress
 * http caching

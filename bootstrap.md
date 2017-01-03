@@ -1,9 +1,10 @@
 Bootstrap: popular HTML, CSS and JS framework for developing responsive, mobile first projects on the web
 
 ## using Bootstrap
+
 下面加入< head> 中
 
-```js
+```html
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=divice-width, initial-scale=1">
@@ -13,17 +14,19 @@ Bootstrap: popular HTML, CSS and JS framework for developing responsive, mobile 
 ```
 
 下面加入 <body>
-```js
+```html
 // jQuery (necessary for Bootstrap's JavaScript plugins
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 ```
 
 *使用 CDN 好处*
+
 - 可以在用户浏览器 cache 中缓存
 - 不需要你下载到 web project folder, 更新方便
 
 ### Bootstrap Container class
+
 <div class="container">...</div>
 * container for all the content of the site
 * fixed width(width depends on screen size)
@@ -31,23 +34,28 @@ Bootstrap: popular HTML, CSS and JS framework for developing responsive, mobile 
 * .container*fluid class allows full width container 
 
 ### Bootstrap Rows
+
 * divide the page into multiple rows
 * rows act as horizontal grouping for columns
 * rows must be inside containers
 
 ### Jumbotron
+
 * lightweight, flexible component for showcasing key content, e.g., company name, logo and key information
 * can be used outside a container to span the entire screen width
  - use a container inside if you wish to contain the content within a fixed width
 
 
 ## Responsive Design
+
 *why*
+
 * user increasingly accessing websites from a variety of devices of different screen sizes
 * adapt to the user's "viewport"
  - build it into the core of the site 
  
 *foundation for responsive design*
+
 * grid system
 * fluid images
 * media queries
@@ -55,6 +63,7 @@ Bootstrap: popular HTML, CSS and JS framework for developing responsive, mobile 
 ## Grid system
 
 *Viewport*
+
 `<meta name="viewport" content="width=divice-width, initial-scale=1">`
 the viewport meta tag:
 * ensures that the screen width is set to the device width and the content is rendered with this width in mind
@@ -62,6 +71,7 @@ the viewport meta tag:
  - bootstrap grid system
  
 *Bootstrap grid*
+
 * designed to be:
  * responsive
  * mobile first
@@ -85,6 +95,7 @@ If did not specify the layout for md and large screen sizes, how will the conten
 - offset to the right by a certain number of columns 
 
 *Nesting columns*
+
 - container > row > col-sm-5 + col-sm-7 > row > col-sm-9 + col-sm-3
 
 ## Icon Fonts 
@@ -100,6 +111,7 @@ If did not specify the layout for md and large screen sizes, how will the conten
  - Include the CSS files and font files into your project 
 
 ## Bootstrap-social
+
 <a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
 
 * Uses Bootstrap and Font Awesome icons to create buttons for social media sites
@@ -107,6 +119,7 @@ If did not specify the layout for md and large screen sizes, how will the conten
 * Include bootstrap-social.css into your project 
 
 ## User Input 
+
 * User input to a webpage 3 approaches
  - <a> tags to provide hyperlinks
  - <button> tags to create buttons
@@ -114,18 +127,20 @@ If did not specify the layout for md and large screen sizes, how will the conten
   * <input> to create elements in forms
 
 *Buttons*
+
 * Buttons behavior dependent on where it is positioned:
  - Inside a form it takes on specific role
  - General purpose outside
 * <a> can also be styled using CSS to look like a button 
 
 *Forms*
+
 * <input>
 * <textarea>
 * <button>
 * <select>
 
-##Bootstrap Buttons
+## Bootstrap Buttons
 
 * Default colors specified in Bootstrap 
  - primary, success, info, warning, danger
@@ -136,6 +151,7 @@ If did not specify the layout for md and large screen sizes, how will the conten
 * Only <button> can be used in nav and navbar 
 
 *Butto Classes*
+
 - btn + { btn-default, btn-primary, ..., btn-link } + { btn-lg btn-sm btn-xs } + btn-block
 
 *Button Groups and Toolbars*
@@ -150,6 +166,7 @@ If did not specify the layout for md and large screen sizes, how will the conten
  form-inline > form-group > label + input 
 
 ## Tables
+
 class: 
 'table'
 'table-striped' for zebra striped rows
@@ -160,10 +177,12 @@ class:
 
 
 *Rows and Cells*
+
 rows and cells can be colored using 5 classes:
 *active, success, info, warning, dange*
 
 ## Panels and wells
+
 sometimes you may wish to highlight some content on your website
 
 *panel*
@@ -193,6 +212,7 @@ class:
 * media-list
 
 ## Responsive Embed
+
 Embedding media content
 
 ## Labels, Alerts, Badges, Progress Bars
@@ -206,6 +226,7 @@ Scrollspy: 滚动高亮
 Affix: 滚动位置
 
 ## Corousel
+
 轮播图
 
 
@@ -215,16 +236,7 @@ Bootstrap JS components build upon jQuery
 
 
 
-
-
-
-
-
-
-
-
-
-## 源码
+# 源码
 
 ```css
 /** container **/
@@ -300,19 +312,7 @@ Bootstrap JS components build upon jQuery
 }
 
 
-
-
-
-
 ```
-
-
-
-
-
-
-
-
 
 
 

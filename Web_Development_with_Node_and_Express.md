@@ -68,10 +68,26 @@ Learning how to think flexibly about middleware and route handlers is key to und
  	- If you do call `next()`, it’s generally inadvisable to send a response to the client. If you do, middleware or route handlers further down the pipeline will be executed, but any client responses they send will be ignored.
 
 
+** Routing **  
+
+The routing mechanism in Express does not take subdomains into account by default: app.get(/about) will handle requests for http://meadowlarktravel.com/about, http:// www.meadowlarktravel.com/about, and http://admin.meadowlarktravel.com/about. If you want to handle a subdomain separately, you can use a package called vhost (for “virtual host,” which comes from an Apache mechanism commonly used for handling subdomains). First, install the package (npm install --save vhost), then edit your application file to create a subdomain:
 
 
+** CORS **  
+
+You generally don’t have to worry about cross-domain resource shar‐ ing (CORS) when using a CDN. External resources loaded in HTML aren’t subject to CORS policy: you only have to enable CORS for resources that are loaded via AJAX   
 
 
+** Performance Considerations **  
+
+How you handle static resources has a significant impact on the real-world performance of your website, especially if your site is multimedia-heavy. The two primary perfor‐ mance considerations are reducing the number of requests and reducing content size.
+
+Of the two, reducing the number of (HTTP) requests is more critical, especially for mobile (the overhead of making an HTTP request is significantly higher over a cellular network). Reducing the number of requests can be accomplished in two ways: com‐ bining resources and browser caching.
+
+Combining resources is primarily an architectural and frontend concern: as much as possible, small images should be combined into a single sprite. Then use CSS to set the offset and size to display only the portion of the image you want. For creating sprites, I highly recommend the free service SpritePad. It makes generating sprites incredibly easy, and it generates the CSS for you as well. Nothing could be easier. SpritePad’s free functionality is probably all you’ll ever need, but if you find yourself creating a lot of sprites, you might find their premium offerings worth it.
+
+Browser caching helps reduce HTTP requests by storing commonly used static resour‐ ces in the client’s browser. Though browsers go to great lengths to make caching as automatic as possible, it’s not magic: there’s a lot you can and should do to enable browser caching of your static resources.
+Lastly, we can increase performance by reducing the size of static resources. Some tech‐ niques are lossless (size reduction can be achieved without losing any data), and some techniques are lossy (size reduction is achieved by reducing the quality of static resour‐ ces). Lossless techniques include minification of JavaScript and CSS, and optimizing PNG images. Lossy techniques include increasing JPEG and video compression levels. We’ll be discussing minification and bundling (which also reduces HTTP requests) in this chapter.
 
 
 

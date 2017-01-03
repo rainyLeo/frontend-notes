@@ -106,9 +106,8 @@
 
 
 
-
-
 ### Terminal Mac  
+
 `ctrl+e` go to end of line
 `ctrl+a` go to beginning of line
 `ctrl+l` clear the screen

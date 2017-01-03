@@ -1,4 +1,4 @@
-#DOM  
+# DOM  
 
 The `DOMContentLoaded` event is fired when the document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading (the `load` event can be used to detect a fully-loaded page).
 
@@ -6,7 +6,7 @@ The `DOMContentLoaded` event is fired when the document has been completely load
 
 `window.onload` vs `document.onload`
 
-##Property   
+## Property   
  
 - DOM elements inherit from an HTMLElement constructor. By making the HTMLElement prototype accessible, the browsers provide us with the ability to extend any HTML node of our choosing.
  
@@ -49,7 +49,7 @@ The `DOMContentLoaded` event is fired when the document has been completely load
   
 `activeElement`   
 
-##笔记
+## 笔记
 
 this = event.currentTarget: 指向事件绑定的 DOM 元素
 event.target: 实际点击的 DOM 元素
@@ -117,6 +117,7 @@ innerHTML 返回 HTML. 当需要在元素内容取出或写入 text 时, 最好�
 
 
 #Event 
+
 ### Method 
 
 `addEventListener()`,  
@@ -161,6 +162,7 @@ innerHTML 返回 HTML. 当需要在元素内容取出或写入 text 时, 最好�
 `resize` `scroll`  
 
 ### Prop
+
 鼠标指针坐标属性:  
 `event.clientX`, `event.clientY`,  浏览器窗口左上角  
 `event.pageX`, `event.pageY`, 页面左上角  

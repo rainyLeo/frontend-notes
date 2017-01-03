@@ -1,6 +1,7 @@
 ## HTTP请求
 
 ** URL **
+
 -URLs specify protocol, server, and local resource
 - syntax : <scheme>://<user>:<password>@<host>:<port>/<path>;<params>?<query>#<frag>
 - Say you want to fetch the URL http://www.joes-hardware.com/seasonal/index-fall.html:
@@ -52,6 +53,7 @@ path tells what particular local resource on the server is being requested.
   - containing data. After the blank line is an optional message body containing any kind of data. Request bodies carry data to the web server; response bodies carry data back to the client. Unlike the start lines and headers, which are textual and structured, the body can contain arbitrary binary data (e.g., images, videos, audio tracks, software applications). Of course, the body can also contain text and can be empty.
 
 **语法**
+
 - messages syntax 
 request message:
 <method> <request-URL> <version>
@@ -110,6 +112,7 @@ Set-cookie
 
 
 **方法**
+
 - GET get a document from the server; Send named resource from the server to the client
 - PUT Store data from client into a named server resource. (message body)
 - DELETE Delete the named resource from a server.
@@ -118,6 +121,7 @@ Set-cookie
 - HEAD Send just the HTTP headers from the response for the named resource.
 
 **状态码**
+
 - Every HTTP response message comes back with a status code. The status code is a three-digit numeric code that tells the client if the request succeeded, or if other actions are required.
 - Status codes between 200 and 299 represent success. Codes between 300 and 399 indicate that the resource has been moved. Codes between 400 and 499 mean that the client did something wrong in the request. Codes between 500 and 599 mean something went awry on the server.
 
@@ -128,8 +132,6 @@ Set-cookie
  * Accept:image/gif,text/html  The client accepts GIF and HTML
 
 *Entity Bodies*
-
-
 
 
 
@@ -195,6 +197,7 @@ Architectural Components of the Web
 
 
 ### Tips 
+
 - Sending Client Data to the Server
 Broadly speaking, your two options for sending client data to the server are the query‐ string and the request body. Normally, if you’re using the querystring, you’re making a GET request, and if you’re using the request body, you’re using a POST request (the HTTP protocol doesn’t prevent you from doing it the other way around, but there’s no point to it: best to stick to standard practice here).
 
@@ -202,16 +205,9 @@ It is a common misperception that POST is secure and GET is not: in reality, bot
 
 
 ## cookie
+
 一种功能强大且高效的持久身份识别技术
 服务器通过 Set-Cookie 或 Set-Cookie2 HTTP响应头部将 cookie 贴到客户端
-
-
-
-
-
-
-
-
 
 
 跟踪了新浪的首页，我们来总结一下HTTP请求的流程：

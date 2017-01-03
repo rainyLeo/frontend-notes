@@ -5,21 +5,26 @@ If you mistype the doctype declaration or leave it out, you can throw most brows
 Quirks mode is browser manufacturers’ attempt to make their software behave like  old browsers
 
 ## meta
+
 **简介**
+
 <meta> 标签用来提供关于 HTML 文档的元数据. 它不会显示在页面上，但是机器却可以解析。
 meta常用于具体说明页面描述性内容，包括关键字，作者, 最后修改时间，和其它的元数据。这些元数据可以被浏览器使用（如何显示内容或重载页面），被搜索引擎使用(关键字)和其它网络服务。
 
 **Tips and Notes**
+
 * <meta>标签总是在<head>内部
 * Metadata 总是 name/value 的一组
 * 如果 name 或者 http-equiv 属性有的话, content 属性也一定要有. 如果没有的话, content 属性也不能定义
 
 **HTML4.01 和 HMTL5 的区别**
+
 HTML5有一个新的属性 charset, 定义 charset 更方便
 * HTML4.01: <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 * HTML5: <meta charset="UTF-8">
 
 **示例**
+
 1. 为搜索引擎定义关键字
 <meta name="keywords" content="HTML, CSS, JavaScript">
 2. 为网页定义描述
@@ -30,12 +35,14 @@ HTML5有一个新的属性 charset, 定义 charset 更方便
 <meta http-equiv="refresh" content="30">
 
 **属性**
+
 name: metadata 的名称
 http-equiv: 为 content 属性值提供 HTTP header
 charset: 指明 HTML 文档的字符编码
 content: 定义 http-equiv 或 name 属性的值
 
 **name 属性值示例**
+
 * viewport(移动端窗口)
 移动端浏览器在一个通常比屏幕更宽的虚拟"窗口"(视口)中渲染页面, 从而无需将所有页面都压缩进小屏幕里(那样会把很多没有针对移动端进行优化的站点打乱). 用户可以通过平移和缩放来浏览页面的不同区域.
 
@@ -67,15 +74,8 @@ Set-Cookie: cookie 设定
 
 
 ## DNS prefech
+
 提前解析后面可能用到的域名, 加快网站的访问速度
 `<link rel="dns-prefetch" href=//a.bcdn.com>`
-
-
-
-
-
-
-
-
 
 

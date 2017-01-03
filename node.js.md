@@ -1,6 +1,6 @@
 
-
 # NPM
+
 CommonJS包规范
 - package.json 包描述文件
 - bin 存放可执行二进制文件的目录
@@ -42,6 +42,7 @@ Note that we prefix our module name with `./`. This signals to Node that it shou
 ```
 
 ## 模块
+
 当模块的文件名是 index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径, 以下等价
 ```js
 var cat = require('/home/user/lib/cat');
@@ -57,6 +58,7 @@ var cat = require('/home/user/lib/cat/index');
 
 
 ## NVM
+
 See what versions are installed:
 `nvm ls`
 
@@ -108,6 +110,7 @@ JavaScript: event-driven model
 python, java, ruby: request-response model
 
 ## Non-blocking IO 
+
 同步 IO: CPU 等待 IO 执行的结果
 异步 IO: CPU 不等待, 去做别的事情, 好了再通知 CPU(回调), 发送信息通知, CPU 检查(轮询)
 
@@ -120,13 +123,13 @@ python, java, ruby: request-response model
 这种假设有道理吗? 绝大多数情况下是这样的, 其他和 I/O 操作无关的花费时间很长的大概只有处理一个庞大的数组或递归调用次数过多.
 
 
-
 ## API 
 
 `process.nextTick()`: defers the execution of a function until the next pass of the event loop. Its functioning is very simple; it takes a callback as an argument and pushes it to the top of the event queue, *in front of* any pending I/O event, and returns immediately. The callback will then be invoked as soon as the event loop runs again. Callbacks deferred with process.nextTick() run before any other I/O event is fired
 `setImmediate()`: the execution is queued *behind* any I/O event that is already in the queue.  
 
 ## Buffer
+
 在 ES6 TypedArray 之前, JavaScript不能操作二进制数据流, Buffer是为了操作8位字节流, 比如 TCP流和文件系统操作.
 
 ES6 引入了 TypedArray, Buffer 实现 Unit8Array以适合 Node.js 使用场景
@@ -134,17 +137,6 @@ ES6 引入了 TypedArray, Buffer 实现 Unit8Array以适合 Node.js 使用场景
 Buffer 类的实例和整数数组相似, 但它在 V8 heap上分配了固定大小内存. Buffer 的大小创建的时候就固定了不能改变.
 
 Buffer 是 Node 全局变量, 不需要 require
-
-
-
-
-
-
-
-
-
-
-
 
 
 

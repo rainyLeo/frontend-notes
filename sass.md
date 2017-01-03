@@ -1,4 +1,5 @@
 ## 变量
+
 $main-color: #333;
 
 
@@ -21,11 +22,13 @@ h1 {
   font-family: "Raleway", Helvetica, Arial, sans-serif;
   color: #222;
 }
+
 h2 {
 	@extend h1;
   border-top: 1px solid #444;
 }
 ```
+
 ## mixin
 
 A mixin is a shortcut that refers to a group of CSS declarations that you’d like to use over and over again

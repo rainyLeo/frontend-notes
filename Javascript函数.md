@@ -1,5 +1,7 @@
 ## 定义函数  
+
 #### 函数声明(Function declarations)  
+
 **函数定义**(也叫**函数声明**，或**函数语句**)由`function`关键字及以下部分组成：  
 
 * 函数名称
@@ -15,9 +17,9 @@ function square(number) {
 square函数有一个名为number的参数。函数包含一条语句，它返回函数参数number与自身的乘积。`return`语句指明函数的返回值  
 `return number * number`  
 
-原始类型参数(例如number)**通过值**传递给函数；这个值传递给函数，但如果函数更改了这个参数的值，这个更改不会影响到全局或调用的函数  
+原始类型参数(例如number) *通过值* 传递给函数；这个值传递给函数，但如果函数更改了这个参数的值，这个更改不会影响到全局或调用的函数  
 
-如果把一个对象 (例如Array或用户自定义的其它对象）当作参数向函数传递时，并且函数更改了对象的property值，这个改变在函数外部也是可见的，如下面的例子所示：  
+如果把一个对象 (例如Array或用户自定义的其它对象）当作参数向函数传递时，并且函数更改了对象的 property 值，这个改变在函数外部也是可见的，如下面的例子所示：  
 
 ```js
 function myFunc(theObject) {
@@ -48,6 +50,7 @@ var x = square(4); //x gets the value 16
 var factorial = function fac(n) {return n < 2 ? 1 : n * fac(n-1) };
 console.log(factorial(3));
 ```
+
 当把一个函数作为参数传递给另一个函数时可以使用函数表达式。下面的例子定义了一个map函数，然后把一个匿名函数作为它的第一个参数来调用:
 
 ```js
@@ -78,15 +81,17 @@ if (num === 0) {
 }
 ```
 
-除了以上描述的定义函数的方法外，也可以通过Function构造函数来在运行时创建函数，这和eval()很像。  
-**方法(method)**是作为对象属性的函数。[Working with objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
+除了以上描述的定义函数的方法外，也可以通过Function构造函数来在运行时创建函数，这和 eval() 很像。  
+*方法(method)* 是作为对象属性的函数。[Working with objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
 
 #### 函数调用(Calling functions)
-定义一个函数并不会执行它。定义函数仅命名了函数，说明了当函数被调用时做什么。**调用**函数才会用给定的参数来执行这些动作。例如，当定义了square函数，可以这样来调用:
+
+定义一个函数并不会执行它。定义函数仅命名了函数，说明了当函数被调用时做什么。*调用* 函数才会用给定的参数来执行这些动作。例如，当定义了square函数，可以这样来调用:
 
 ```js
 square(5);
 ```
+
 这条语句用一个参数5来调用函数。函数执行语句返回25这个值。  
 当函数被调用时它必须在作用域之内，但函数声明可以被提升，如下所示:
 
@@ -130,6 +135,7 @@ c = factorial(3);
 也有其他的方法可以调用函数。经常会出现需要动态调用函数的情况，或者传递给函数的参数数量会变化，或者函数调用的context需要在运行时被设定为一个指定的对象。这说明函数本身也是对象，也可以拥有方法。参考[Function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function) object。其中的一个方法，[apply()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)方法，可以用来完成这个目的  
 
 #### 函数作用域(Function scope)
+
 定义在函数内部的变量在函数外部不能被访问，因为这个变量仅在函数的作用域中有定义。但是函数可以访问定义在其作用域中的任何变量和函数。换句话说，定义在全局作用域内的函数可以访问定义在全局作用域中的变量。定义在一个函数内的子函数也可以访问定义在其父函数内的所有变量，以及它的父函数和父函数可以访问的变量。  
 
 ```js
@@ -286,12 +292,14 @@ result = fn_inside(5); //returns 8
 result1 = outside(3)(5); //returns 8
 ```
 #### 保存变量(Preservation of variables)
+
 注意下当inside返回时x是怎样保存的。闭包会在它引用的所有作用域中保存参数和变量。由于每一次调用传入的参数都可能不同，每一次调用outside都创建一个新的闭包。当返回的inside不再可访问时内存才会释放出来。
 
 这与存储在其他对象的引用不同，而且通常是不太明显的，因为并不能直接设置引用，且不能检查(inspect)它们。
 
 #### 多层嵌套函数(Multiply-nested functions)
-函数可以多层嵌套，例如function(A)包含function(B)包含function(C)。函数B和C都会形成闭包，B可以访问A，C可以访问B。而且，C也可以访问A。因此，闭包可以包含多层作用域(scope)；它递归包含函数的作用域。这叫做*作用域链(scope chaining)*为什么叫做“链”稍后会有解释。
+
+函数可以多层嵌套，例如function(A)包含function(B)包含function(C)。函数B和C都会形成闭包，B可以访问A，C可以访问B。而且，C也可以访问A。因此，闭包可以包含多层作用域(scope)；它递归包含函数的作用域。这叫做 *作用域链(scope chaining)* 为什么叫做“链”稍后会有解释。
 
 考虑下面的例子:
 
@@ -316,6 +324,7 @@ A(1); //logs 6 (1 ＋2 ＋3)
 但是反过来的话时不成立的。A不能访问C，因为A不能访问B的参数和变量，而C是B的一个变量。因此，C对B来说是私有的。  
 
 #### 命名冲突(Name conflicts)
+
 当一个闭包的作用域内存在两个参数或变量拥有同样的名字时，会产生命名冲突。更内部的作用域具有更高优先级，因此最内部的作用域优先级最高，最外部的作用域优先级最低。这就是作用域链。链的第一个是最内部的作用域，最后一个是最外部的作用域。看下面的例子:  
 
 ```js
@@ -332,6 +341,7 @@ result = outside()(20); //returns 20 instead of 10
 `return x`时发生命名冲突，因为有内部参数x和也有外部的变量x。这里的作用域链是`｛inside，outside，global object｝`。因此inside的x的优先级闭outside的x更高，返回的是20而不是10  
 
 #### 闭包(Closures)
+
 闭包是JavaScript最强大的特性之一。JavaScript允许函数的嵌套，并且内部函数访问定义在外部函数中的变量和函数(以及外部函数可以访问的变量和函数)。然而，外部函数不能访问定义在内部函数中的变量和函数。这为内部函数的变量提供了一定的安全性。另外，而且，当内部函数生存周期大于外部函数时，由于内部函数可以访问外部函数的作用域，定义在外部函数的变量和函数的生存周期就会大于外部函数本身。当内部函数以某种方式被任何一个外部函数作用域访问时，一个闭包就产生了。
 
 ```js
@@ -413,13 +423,14 @@ var createPet = function(name) {  //Outer function defines a variable called "na
 `this`变量有点复杂。它必须小心地使用，`this`指向的完全取决于函数在何处被调用，而不是在何处被定义。一篇关于闭包的详尽的文章在[这里](http://jibbering.com/faq/notes/closures/)
 
 #### 使用arguments对象(Using the arguments object)
+
 函数的arguments会被保存在一个类似数组的对象中。在函数内，可以这样取得被传递的参数:  
 
 `arguments[i]`  
 
-i是参数的序数编号，它从0开始。第一个传递给函数的参数为arguments[0]。参数的总数可以用arguments.length来表示  
+i 是参数的序数编号，它从0开始。第一个传递给函数的参数为 arguments[0]。参数的总数可以用 arguments.length 来表示  
 
-在使用arguments对象时，可以用比声明时更多的参数调用函数。这在你不知道要向函数传递多少参数时比较有用。可以使用arguments.length来获得实际传递给函数的参数的数量，然后用arguments对象访问每一个参数。  
+在使用 arguments 对象时，可以用比声明时更多的参数调用函数。这在你不知道要向函数传递多少参数时比较有用。可以使用 arguments.length 来获得实际传递给函数的参数的数量，然后用arguments对象访问每一个参数。  
 
 例如，假设有一个连接几个字符串的函数。函数的唯一参数是一个字符串，它确定了连接几个项目的符号。函数定义如下：  
 
@@ -446,9 +457,11 @@ myConcat(", ", "red", "orange", "blue");
 
 
 #### 函数参数(Function parameters)
+
 从ECMAScript 6开始，有两个新的parameters: default parameters and rest parameters.
 
 ##### Default parameters
+
 在JavaScript中，函数的参数默认值为undefined。但是，在某些情况下，设置一个不同的默认值会变得有用。这就要用到default parameters。  
 
 在过去，设置默认值通常的做法是在函数内测试参数的值，如果为defined则进行赋值。在下面的例子中，如果在调用时没有给b传递值，当计算a * b时它的值则为defined，相乘的结果为NaN。但可以下面例子中的第二行来解决：  
@@ -484,12 +497,15 @@ function multiply(multiplier, ...theArgs) {
 var arr = multiply(2, 1, 2, 3);
 console.log(arr); // [2, 4, 6]
 ```
+
 #### 箭头函数(Arrow functions)
+
 [箭头函数](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions)和函数表达式相比语法较简洁，词法上和this值绑定。箭头函数都是匿名的。看这篇博客：[ES6 In Depth: Arrow functions](https://hacks.mozilla.org/2015/06/es6-in-depth-arrow-functions/)
 
 从2个方面介绍箭头函数：更短的函数和词法this。
 
 ##### 更短的函数(Shorter functions)
+
 在一些函数模式中，更短的函数更受欢迎。比较：
 
 ```js
@@ -506,6 +522,7 @@ var a3 = a.map( s => s.length )
 ```
 
 ##### this的词法(Lexical this)
+
 在箭头函数出现之前，每个新的函数定义自己的this值(1.在构造函数中是new的对象，2.在严格模式函数调用中是undefined，在非严格模式函数调用中是全局对象 3.函数被当作对象方法调用时是context object, 4.在apply, call, bind中是参数)。这在面向对象编程中有点麻烦。
 
 ```js
@@ -557,6 +574,7 @@ var p = new Person();
 ```
 
 #### 预定义的函数(Predefined functions)
+
 JavaScript有一些内置的函数。  
 
 `eval()`
@@ -583,6 +601,7 @@ encodeURI()方法通过用以一个，两个，三个或四个转义序列表示
 encodeURIComponent() 方法通过用以一个，两个，三个或四个转义序列表示字符的UTF-8编码替换统一资源标识符（URI）的每个字符来进行编码（每个字符对应四个转义序列，这四个序列组了两个”替代“字符）。  
 
 # 函数对象内置方法
+
 ## Function.prototype.apply()
 
 apply()方法以指定的this值、以数组或类数组形势提供的参数调用函数  
@@ -590,16 +609,21 @@ apply()方法以指定的this值、以数组或类数组形势提供的参数调
 >注意：apply()函数的语法和call()的很像，唯一区别在于call()接收的是**参数列表**，而apply()接收的是**参数数组**(或类数组对象)
 
 ##### 语法  
+
 `fun.apply(thisArg, [argsArray])`
+
 ##### 参数
 
 **thisArg**  
+
 在fun函数运行时指定的this值。注意的是，指定的this值并不一定是该函数执行时真正的this值，如果这个函数处于非严格模式下，则指定为null或undefined时会自动指向全局对象(浏览器中就是window对象)，同时值为原始值(数字，字符串，布尔值)的this会指向该原始值的自动标准对象。  
 
 **argsArray**  
+
 一个数组或者类数组对象，其中的数组元素将作为单独的参数传给fun函数。如果该参数的值为null或undefined，则表示不需要传入任何参数。从ECMAScript5开始可以使用类数组对象。浏览器兼容性请参阅本文底部内容。  
 
 #### 描述
+
 在调用一个存在的函数时，你可以为其指定一个this对象。this指当前对象，也就是正在调用这个函数的对象。使用apply，你可以只写一次这个方法然后在另一个对象中继承它，而不用在新对象中重复写该方法。  
 
 apply与call()非常相似，不同之处在于提供参数的方式。apply使用参数数组而不是一组参数列表。apply可以使用数组字面量(array literal)，如fun.apply(this, ['eat', 'bananas'])，或数组对象，如fun.apply(this, new Array('eat', 'bananas'))。  
@@ -611,7 +635,9 @@ apply与call()非常相似，不同之处在于提供参数的方式。apply使�
 需要注意：IE9和chrome14仍然不接受类数组对象。如果传入类数组对象，它们会抛出异常。  
 
 #### 示例
-**使用apply来链接构造器**  
+
+**使用apply来链接构造器** 
+ 
 你可以使用apply来给一个对象链接构造器，类似于Java。在接下来的例子中我们会创建一个叫做construct的全局的Function函数，来使你能够在构造器中使用一个数组对象而非参数列表。  
 
 ```js
@@ -656,6 +682,7 @@ console.log(myInstance.constructor);              // logs "MyConstructor"
 >
 
 #### 使用apply和内置函数
+
 聪明的apply用法允许你在某些本来需要写成遍历数组变量的任务中使用内建的函数。在接下里的例子中我们会使用Math.max/Math.min来找出一个数组中的最大／最小值。  
 
 ```js
@@ -697,21 +724,29 @@ var min = minOfArray([5, 6, 2, 3, 7]);
 ```  
 
 ## Function.prototype.bind()
+
 bind()方法会创建一个新函数，当这个新函数被调用时，它的this值设定为提供的值，及其它给定的参数
 
 #### 语法
+
 `fun.bind(thisArg[, arg1[, arg2[, ...]]])`  
 
 ##### 参数
+
 **thisArg**  
 当绑定的函数被调用时，被传递给目标函数作为this的值。如果绑定函数用new操作符创建的，这个值被忽略
+
 **arg1, arg2, ...**  
 当调用目标函数时，传递给绑定函数的参数  
 
 #### 描述
+
 bind()函数创建一个新的函数:绑定函数(a bound function) ，新函数与被调函数(绑定函数的目标函数)具有相同的函数体(在ECMAScript中内部的call属性)。当目标函数被调用时，this值作为bind()的第一个参数，该参数不能被重写。当绑定函数被调用时，bind()也接收默认参数来传给目标函数。绑定函数也可以用new操作符来创建：这样做的话好像目标函数被创建了。提供的this值被忽略，while prepended arguments are provided to the emulated function.
+
 #### 示例
+
 ##### 创建绑定函数
+
 bind() 最简单的用法是创建一个函数，使这个函数不论怎么调用都有同样的 this 值。JavaScript新手经常犯的一个错误是将一个方法从对象中拿出来，然后再调用，希望方法中的 this 是原来的对象。（比如在回调中传入这个方法。）如果不做特殊处理的话，一般会丢失原来的对象。从函数中，用原来的对象创建一个绑定函数，则能很好地解决这个问题：  
 
 ```js
@@ -774,6 +809,7 @@ flower.bloom();  // 一秒钟后, 调用'declare'方法
 ```
 
 ##### 作为构造函数使用的绑定函数
+
 >警告 :这部分演示了 JavaScript 的能力并且记录了 bind() 的超前用法。以下展示的方法并不是最佳的解决方案且可能不应该用在任何生产环境中。  
 
 自然而然地，绑定函数适用于用new操作符 new 去构造一个由目标函数创建的新的实例。当一个绑定函数是用来构建一个值的，原来提供的 this 就会被忽略。然而, 原先提供的那些参数仍然会被前置到构造函数调用的前面。  
@@ -848,6 +884,7 @@ slice(arguments);
 ```
 
 #### Polyfill（兼容旧浏览器）
+
 bind 函数在 ECMA-262 第五版才被加入；它可能无法在所有浏览器上运行。你可以部份地在脚本开头加入以下代码，就能使它运作，让不支持的浏览器也能使用 bind() 功能。  
 
 ```js
@@ -880,12 +917,12 @@ if (!Function.prototype.bind) {
 
 上述算法和实际的实现算法还有许多其他的不同 （尽管可能还有其他不同之处，却没有那个必要去穷尽）：
 
-1 这部分实现依赖于`Array.prototype.slice()`， `Array.prototype.concat()`， `Function.prototype.call()`这些原生方法.  
+1. 这部分实现依赖于`Array.prototype.slice()`， `Array.prototype.concat()`， `Function.prototype.call()`这些原生方法.  
 
-2 这部分实现创建的函数的实现并没有caller 以及会在 get，set或者deletion上抛出TypeError错误的 arguments 属性这两个不可改变的“毒药” 。（假如环境支持{jsxref("Object.defineProperty")}}， 或者实现支持__defineGetter__ and __defineSetter__ 扩展）  
+2. 这部分实现创建的函数的实现并没有caller 以及会在 get，set或者deletion上抛出TypeError错误的 arguments 属性这两个不可改变的“毒药” 。（假如环境支持{jsxref("Object.defineProperty")}}， 或者实现支持__defineGetter__ and __defineSetter__ 扩展）  
 
-3 这部分实现创建的函数有 prototype 属性。（正确的绑定函数没有的)  
+3. 这部分实现创建的函数有 prototype 属性。（正确的绑定函数没有的)  
 
-4 这部分实现创建的绑定函数所有的 length 属性并不是同ECMA-262标准一致的：它的 length 是0，而在实际的实现中根据目标函数的 length 和预先指定的参数个数可能会返回非零的 length。  
+4. 这部分实现创建的绑定函数所有的 length 属性并不是同ECMA-262标准一致的：它的 length 是0，而在实际的实现中根据目标函数的 length 和预先指定的参数个数可能会返回非零的 length。  
 
 如果你选择使用这部分实现，你不能依赖于ECMA-262，但是ECMA-5是可以的。在某些情况下（也可以作另一番修改以适应特定的需要），这部分实现也许可以作为一个过渡，在bind()函数被广泛支持之前。
