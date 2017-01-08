@@ -97,5 +97,22 @@ Specifying `visibility:collapse` on a flex item causes it to become a collapsed 
 
 ---
 
+
+## initial values
+
+* flex container
+  flex-direction: row
+  flex-wrap: no-wrap
+  justify-content: flex-start
+  align-items: stretch
+
+* flex items
+  flex-grow: 0
+  flex-shrink: 1
+  flex-basis: auto
+
+
+## other
+
 Flex containers are not block-level elements, so some properties don’t apply to flex containers or items. 
 For example, the column property doesn’t apply to flex containers, and the float and clear properties don’t apply to flex items.

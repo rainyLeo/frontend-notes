@@ -353,8 +353,24 @@ background, border etc.
 font, text
 
 性选择器或属性值用双引号（””），而不是单引号（”）括起来。
-URL值（url()）不要使用引号
+URL值（url()）不要使
 
+
+用引号
+
+
+## 不熟悉属性
+
+user-select
+pointer-events
+outline-offset
+cursor: not-allowed;
+touch-action
+-webkit-appearance
+position: sticky;
+object-fit
+background-size: cover
+white-space: nowrap;
 
 
 

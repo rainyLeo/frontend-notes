@@ -74,6 +74,8 @@ $ man git-<verb>
 	
 - `git rm`
 	Remove files from the working tree and from the index
+  用 git rm 来删除文件，同时还会将这个删除操作记录下来；
+  用 rm 来删除文件，仅仅是删除了物理文件，没有将其从 git 的记录中剔除 
 	
 	`git rm --cached`:  removes the file from the index/staging area and leaves it in the working directory, keep the file on your hard drive but not have Git track it anymore
 	
@@ -171,6 +173,10 @@ Undoing
 	
 	* Unstaging a Staged File
 	`git reset HEAD [filename]`
+  
+  * undo git rm
+  `git reset --hard HEAD`
+  should forcibly reset everything to your last commit.
 	
 	* Unmodifying a Modified File
 	`git checkout -- [filename]`
@@ -227,7 +233,7 @@ git conflit markers:
 # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
 /TODO
 # 忽略 build/ 目录下的所有文件
-build/
+`build/`
 # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 doc/*.txt
 # ignore all .txt files in the doc/ directory
