@@ -79,3 +79,6 @@ Set-Cookie: cookie 设定
 `<link rel="dns-prefetch" href=//a.bcdn.com>`
 
 
+## entity
+
+close x: &times; &#x274C; &#x274E;

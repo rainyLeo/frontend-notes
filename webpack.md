@@ -60,6 +60,12 @@ export default {
 ```
 从你的需求来看，你最好先把图片上传到 cdn，然后在接口里返回图片的绝对路径。
 
+**url-loader**
+
+The url loader works like the file loader, but can return a Data Url if the file is smaller than a byte limit.
+
+
+
 ### Command 
 
 `webpack`
