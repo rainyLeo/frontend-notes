@@ -190,9 +190,19 @@ Git Conflit
 `git status`
 `git mergetool`
 
+
+更新上游
+ `git remote add upstream git@code.aliyun.com:tm/pantheon-fe-mobile.git`
+ `git fetch upstream`
+ `git pull upstream master`
+
+
 fetch vs pull (keep update)
 `git fetch origin` pull data to local repo, not merge
 `git pull origin` pull data and merge from remote into current 
+
+
+
 
 ---
 Workflow
