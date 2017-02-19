@@ -21,7 +21,7 @@
 
 - Http2
 
-  - 多路复用: 即连接共享, 通过多个 request 共享一个tcp连接的方式, 接收方可以根据request的 id将request再归属到各自不同的服务端请求里面
+  - 多路复用: 即连接共享, 通过多个 request 共享一个 tcp 连接的方式, 接收方可以根据request的 id将request再归属到各自不同的服务端请求里面
   - 压缩头部: 前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。
   - 二进制分帧: HTTP1.x的解析是基于文本. 在http2二进制分帧层上，HTTP2.0会将所有传输的信息分割为更小的消息和帧,并对它们采用二进制格式的编码，其中HTTP1.x的首部信息会被封装到Headers帧，request body则封装到Data帧里面;改进传输性能，实现低延迟和高吞吐量
   - 服务器推送: 在客户端请求之前发送数据的机制
@@ -34,7 +34,7 @@
 - 弹出层, 轮播
 - js 冒泡
 - tcp udp 区别
-- CommonJS AMD CMD CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。 但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD CMD 解决方案。
+- CommonJS AMD CMD CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像 Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。 但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD CMD 解决方案。
 
 - CommonJS
 
@@ -119,7 +119,7 @@ function findPrime(n) {
 	return res
 }
 ```
-- 字符串出现次数最多的字符统计 
+- 字符串出现次数最多的字符统计
  ```js
  var arr = s.split('').sort().join('').match(/(\S)\1*/g)
  ```
@@ -181,13 +181,13 @@ for (let i = 0; i < array.length; i++) {
 - 实现图片的切换, 除了闭包还要什么方法
 - 红黑树
 - CSS 三列布局, 不用浮动
- flex 
+ flex
 - flex 布局
 - jQuery 源码
-- cdn 不加 http 
+- cdn 不加 http
  有可能是 https协议的
-- 为什么淘宝、腾讯等会把静态资源放在另外一个主域名下 
- 1、cookie free，即这些域名下请求不会发cookie，节省流量，这也是不放二级三级域名的原因 
+- 为什么淘宝、腾讯等会把静态资源放在另外一个主域名下
+ 1、cookie free，即这些域名下请求不会发cookie，节省流量，这也是不放二级三级域名的原因
  2、动静分离，静态资源方便做CDN
 
 # HTML
@@ -317,7 +317,7 @@ CSRF（Cross-site request forgery），中文名称：跨站请求伪造
 
 - MVC
 
-View 响应用户交互，将特定事件传给 Controller Controller 完成业务逻辑后，要求 Model 改变状态（改变 model 状态的方法，应该是 model 模块的内容，不要写进 controller） Model 将新的数据发送到 View(当Model变更了以后，会通过观察者模式（Observer Pattern）通知View)，用户得到反馈 
+View 响应用户交互，将特定事件传给 Controller Controller 完成业务逻辑后，要求 Model 改变状态（改变 model 状态的方法，应该是 model 模块的内容，不要写进 controller） Model 将新的数据发送到 View(当Model变更了以后，会通过观察者模式（Observer Pattern）通知View)，用户得到反馈
 
 - MVVM
 组成部分Model、View、ViewModel

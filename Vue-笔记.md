@@ -18,16 +18,28 @@ style 动态绑定要加 : , `:style="{ }"`
 
 `v-bind` 接的是表达式, 其他绑定(mustache)也是, 对象字面量属于表达式
  v-bind, {{ }} 里面可以放函数调用, `v-bind="fullName('leo')"`,  `{{ fullName('leo') }}`
+ 
+尽量不要在 {{ }} 里面放函数调用, 而是使用 filter
+
+<!-- `{{ formatDate(article.createdAt) }}` 出错! -->
 
 `message.split('')` 是表达式
 
-函数调用 `f('a')` 是表达式还是语句 ??
+函数调用 `f('a')` 是表达式还是语句 ??, 猜测是表达式
 
-mapState, mapGetters 写在 `computed` 里, mapMutations, mapActions 写在 `methods` 里
 
-`this.$set(this.list[index],'status',true)` // 通过set的方法让数组的变动能够让Vue检测到
+`this.$set(this.list[index], 'status', true)` // 通过set的方法让数组的变动能够让Vue检测到
 
-v-if和v-for放在一个元素内同时使用，因为Vue总会先执行v-for，所以导致v-if不会被执行。替代地，你可以使用一个额外的template元素用来放置v-if或者v-for从而达到同样的目的
+v-for 可以用于对象; 可以用 of; 要加上 key
+v-if, v-for 可以用在 template 上
+
+v-if 和 v-for 放在一个元素内同时使用，因为 Vue 总会先执行 v-for，所以导致 v-if 不会被执行。替代地，你可以使用一个额外的template元素用来放置 v-if 或者 v-for 从而达到同样的目的
+
+v-if vs v-show: v-show 切换的是 css display 属性, 总是会渲染在 DOM 中, 而 v-if 不会渲染在 DOM 中
+
+is 属性
+
+修饰符 .stop, .prevent, .self, .capture 只能用于原生事件, .once 还可以用于自定义事件
 
 自定义组件添加原生事件要加 .native `<my-component @click.native="doThis"></my-component>`
 
@@ -70,15 +82,33 @@ resolve: {
 The runtime-only build does not include the template compiler, and does not support the `template` option. You can only use the `render` option when using the runtime-only build, but it works with single-file components, because single-file components’ templates are pre-compiled into `render` functions during the build step. 
 
 
+sass 加入 scoped 有时部分 css 会失效(第三方组件, 比如elementUI)
+
 - keep-alive
 If you want to keep the switched-out components in memory so that you can preserve their state or avoid re-rendering, you can wrap a dynamic component in a `<keep-alive>` element:
 路由切换时组件不更新,报错: TypeError: Cannot read property '$el' of undefined, 但手动刷新页面可以
 解决: router-view 加 keep-alive
 
+由于 JavaScript 的限制， Vue 不能检测以下变动的数组：
+当你利用索引直接设置一个项时，例如： vm.items[indexOfItem] = newValue
+当你修改数组的长度时，例如： vm.items.length = newLength
+
+## vuex
+
+mapState, mapGetters 写在 `computed` 里, mapMutations, mapActions 写在 `methods` 里
+
 
 ## 还不熟悉
-mixin
-slot
-自定义组件, 指令
+mixin, extends
+自定义事件, 自定义指令
+slot, keep-alive
+key, ref
+render
 插件
+filters
+functional
+$options, $parent, $root, $slots, $refs
+$set, $watch, $delete, $on, $off, $emit,
+$mount, $forceUpdate, $nextTick, $destroy
 
+vuex

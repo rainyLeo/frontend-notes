@@ -14,13 +14,13 @@ Dep 即依赖，所谓依赖，就是“表达式（或函数）的值对 `vm._d
 ---
 
  - addSub
- 
+
  - removeSub
- 
+
  - depend
- 
+
  - notify
- 
+
  Dep.target
  targetStack, pushTarget(), popTarget
 
@@ -43,7 +43,7 @@ Dep 添加/删除订阅者(watcher), watcher 给自己添加 Dep, 或把自己�
 则通知它 update 自己所在的 DOM.
 
 `Directive.prototype._bind()` 里面，会 `new Watcher(expression, update)`，
-把表达式和directive的update方法传进去。
+把表达式和 .directive的 update方法传进去。
 ---
 
 每个指令都维护一个 Watcher 实例 `this._watcher` ，这个对象知道什么时候需要执行更新方法，所以现在 DOM 操作的更新函数转交给 Watcher 来维护。
@@ -59,41 +59,41 @@ Dep 添加/删除订阅者(watcher), watcher 给自己添加 Dep, 或把自己�
 	 Evaluate the getter, and re-collect dependencies.
 	 "touch" every property so they are all tracked as
    dependencies for deep watching
-	 
+
 	- addDep
 	 Add a dependency to this directive
-	 
+
 	- cleanupDeps
 	 Clean up for dependency collection
-	 
+
 	- update
 	 Subsciber interface. Will be called when a dependency changes
-	 
+
 	 ```js
 	 Dep.prototype.notify = function() {
 	 	subs.forEach(sub => sub.update())
 	 }
 	 ```
-	 
+
 	- run
 	 Scheduler job interface.
 	 Will be called by the scheduler.
-	 
+
 	- evaluate
-	 Evaluate the value of the watcher. 
+	 Evaluate the value of the watcher.
 	 This only gets called for lazy watchers
-	 
+
 	- depend
 	 Depend on all deps collected by this watcher
-	 
+
 	- teardown
 	 Remove self from all dependencies's subscriber list
-	 
+
 	 remove self from vm's watcher list
    this is a somewhat expensive operation so we skip it
    if the vm is being destroyed or is performing a v-for
    re-render (the watcher list is then filtered by v-for).
-	 
+
 	- traverse
 	 Recursively traverse an object to evoke all converted
    getters, so that every nested property inside the object
@@ -118,7 +118,7 @@ collect dependencies and dispatches updates.
  Walk through each property and convert them into
  getter/setters. This method should only be called when
  value type is Object.
- 
+
 - observeArray
  Observe a list of Array items
 
@@ -128,27 +128,27 @@ collect dependencies and dispatches updates.
 - protoAugment
  Augment an target Object or Array by intercepting
  the prototype chain using __proto__
- 增强对象或数组, 使其能够检测变化. 一是拦截数组的 mutation methods, 
+ 增强对象或数组, 使其能够检测变化. 一是拦截数组的 mutation methods,
  二是提供 $set, $remove
- 
+
 - copyAugment
 
 - defineReactive$$1
  Define a reactive property on an Object.
- 
+
 - observe
  Attempt to create an observer instance for a value,
  returns the new observer if successfully observed,
  or the existing observer if the value already has one.
- 
+
 - set
  Set a property on an object. Adds the new property and
  triggers change notification if the property doesn't
  already exist.
- 
+
 - del
  Delete a property and trigger change if necessary.
- 
+
 - dependArray
 
  Collect dependencies on array elements when the array is touched, since
@@ -166,19 +166,3 @@ collect dependencies and dispatches updates.
   Push a watcher into the watcher queue.
   Jobs with duplicate IDs will be skipped unless it's
   pushed when the queue is being flushed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

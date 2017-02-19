@@ -1,7 +1,7 @@
 
 - doctype
 This doctype declaration is the  first line in the HTML, and defines what version of HTML you’re using (such as HTML5 or HTML 4.01 Transitional).
-If you mistype the doctype declaration or leave it out, you can throw most browsers into an altered state called *quirks mode*. 
+If you mistype the doctype declaration or leave it out, you can throw most browsers into an altered state called *quirks mode*.
 Quirks mode is browser manufacturers’ attempt to make their software behave like  old browsers
 
 ## meta
@@ -9,7 +9,7 @@ Quirks mode is browser manufacturers’ attempt to make their software behave li
 **简介**
 
 <meta> 标签用来提供关于 HTML 文档的元数据. 它不会显示在页面上，但是机器却可以解析。
-meta常用于具体说明页面描述性内容，包括关键字，作者, 最后修改时间，和其它的元数据。这些元数据可以被浏览器使用（如何显示内容或重载页面），被搜索引擎使用(关键字)和其它网络服务。
+meta 常用于具体说明页面描述性内容，包括关键字，作者, 最后修改时间，和其它的元数据。这些元数据可以被浏览器使用（如何显示内容或重载页面），被搜索引擎使用(关键字)和其它网络服务。
 
 **Tips and Notes**
 
@@ -72,6 +72,11 @@ expires: 网页到期时间
 refresh: 自动刷新, 可指向设定的网址
 Set-Cookie: cookie 设定
 
+## 表单
+
+autocomplete
+autofocus
+pattern
 
 ## DNS prefech
 

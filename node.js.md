@@ -7,22 +7,22 @@ CommonJS包规范
 - lib 存放JavaScript代码的目录
 - doc 存放文档的目录
 - test 存放单元测试用例的目录
- 
-package.json 
+
+package.json
 - dependencies 使用当前包所需要依赖的包列表, NPM会通过这个属性帮助自动加载依赖的包
 - scripts 脚本说明对象. 它主要被包管理器用来安装, 编译, 测试和卸载包
-- main 模块引入方法require()在引入包时, 会优先检查这个字段, 并将其作为包中其余模块的入口. 如果不存在这个字段, require()会查找包目录下的index.js, index.node, index.json文件作为默认入口
+- main 模块引入方法 require()在引入包时, 会优先检查这个字段, 并将其作为包中其余模块的入口. 如果不存在这个字段, require()会查找包目录下的index.js, index.node, index.json文件作为默认入口
 - devDependencies 一些模块只在开发时需要依赖. 配置这个属性, 可以提示包的后续开发者安装依赖包
 
 
 `npm init`
 `npm install`
-`-g` 将一个包安装为全局可用的可执行命令 /usr/local/lib/node_modules 
+`-g` 将一个包安装为全局可用的可执行命令 /usr/local/lib/node_modules
 `--save` saved to the package.json file.
 `--save-dev` as a dev dependency in your package.json file.
 
 NPM Scripts
-`npm run test` 
+`npm run test`
 
 `__dirname` will resolve to the directory the executing script resides in. So if your script resides in `/home/sites/app.js`, `__dirname` will resolve to `/home/sites`. It’s a good idea to use this handy global whenever possible.
 
@@ -82,14 +82,14 @@ Set the new version as your default:
 
 - what to do with it
 	- utilities on your machine
-	- a web server 
+	- a web server
 
-## Event loop 
+## Event loop
 
-call stack 和 message queue 一起运行的机制称为 Event Loop. "Loop" 指的是 runtime 等待 message 出现在 queue 中, 处理这个 message, 再次等待一直这样持续. 
+call stack 和 message queue 一起运行的机制称为 Event Loop. "Loop" 指的是 runtime 等待 message 出现在 queue 中, 处理这个 message, 再次等待一直这样持续.
 
-Event loop 的工作很简单. 查看 stack 和查看 task queue; 如果 stack 是空的, 把 queue 中第一个取出, 把它 push 到 stack 中 
- 
+Event loop 的工作很简单. 查看 stack 和查看 task queue; 如果 stack 是空的, 把 queue 中第一个取出, 把它 push 到 stack 中
+
 Examples
 
 macrotasks: setTimeout, setInterval, setImmediate, I/O, UI rendering
@@ -106,24 +106,24 @@ event driven 的的实现过程主要靠 event loop 完成。进程启动后就�
 事实上，不是所有的事件都放置在一个队列里。
 不同的事件，放置在不同的队列。
 
-JavaScript: event-driven model 
+JavaScript: event-driven model
 python, java, ruby: request-response model
 
-## Non-blocking IO 
+## Non-blocking IO
 
 同步 IO: CPU 等待 IO 执行的结果
 异步 IO: CPU 不等待, 去做别的事情, 好了再通知 CPU(回调), 发送信息通知, CPU 检查(轮询)
 
 记住一点: *只有当 call stack 空的时候, task 才会从 task queue 移入 call stack 中*.  
 
-上面这句话总结了 JavaScript 的 non-bolcking, single-threaded 的本质. 意思是当一个函数开始执行时, 没有东西可以打断它. 其他需要被执行的 callback 函数必须等待. 这就是 JavaScript 运行的方式. 问题来了, 如果 call stack 中当前的函数执行时间很长怎么办? 这样是否意味着 message queue 会变得越来越长, 一些重要的 message 需要等待很长的时间? 这个问题可以避免, 由于这个原因:
+上面这句话总结了 JavaScript 的 non-blocking, single-threaded 的本质. 意思是当一个函数开始执行时, 没有东西可以打断它. 其他需要被执行的 callback 函数必须等待. 这就是 JavaScript 运行的方式. 问题来了, 如果 call stack 中当前的函数执行时间很长怎么办? 这样是否意味着 message queue 会变得越来越长, 一些重要的 message 需要等待很长的时间? 这个问题可以避免, 由于这个原因:
 
-花费时间长的操作通常和 I/O 有关. 因此有一种异步 I/O 的机制. 指的是当需要进行 I/O 操作时, 例如和服务器或者数据库进行通信, 你需要传递一个 callback 函数, 当操作完成时执行它. 这样的话, 调用的函数就不会被 blocked. 因此当假定只有 I/O 操作花费的时间较长时, 就不会遇到 queue 中的 message 等待过长的时间. 
+花费时间长的操作通常和 I/O 有关. 因此有一种异步 I/O 的机制. 指的是当需要进行 I/O 操作时, 例如和服务器或者数据库进行通信, 你需要传递一个 callback 函数, 当操作完成时执行它. 这样的话, 调用的函数就不会被 blocked. 因此当假定只有 I/O 操作花费的时间较长时, 就不会遇到 queue 中的 message 等待过长的时间.
 
 这种假设有道理吗? 绝大多数情况下是这样的, 其他和 I/O 操作无关的花费时间很长的大概只有处理一个庞大的数组或递归调用次数过多.
 
 
-## API 
+## API
 
 `process.nextTick()`: defers the execution of a function until the next pass of the event loop. Its functioning is very simple; it takes a callback as an argument and pushes it to the top of the event queue, *in front of* any pending I/O event, and returns immediately. The callback will then be invoked as soon as the event loop runs again. Callbacks deferred with process.nextTick() run before any other I/O event is fired
 `setImmediate()`: the execution is queued *behind* any I/O event that is already in the queue.  
@@ -137,6 +137,3 @@ ES6 引入了 TypedArray, Buffer 实现 Unit8Array以适合 Node.js 使用场景
 Buffer 类的实例和整数数组相似, 但它在 V8 heap上分配了固定大小内存. Buffer 的大小创建的时候就固定了不能改变.
 
 Buffer 是 Node 全局变量, 不需要 require
-
-
-

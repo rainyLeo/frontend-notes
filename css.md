@@ -24,7 +24,7 @@ Sibling Selector: `+, ~`
 
 **优先级**
 
-按照顺序: 
+按照顺序:
 inline > internal > external > browser default (同样的 weight 时)
 优先级:
 inline > id > class = attritube = pseudo > tag = pseudo element
@@ -52,12 +52,12 @@ font, color, line-height, border-collapse, border-spacing, word-spacing, letter-
 默认, width 和 height 为 content 的尺寸, 不包括 padding, border 和 margin.
 注意: padding, border, margin 在 box 之外, 例如 `.box {width: 350px; border: 10px solid balck;}`, 结果是浏览器中渲染出 `.box {width: 370px}`
 
-元素的尺寸是这样计算的: width = width of content, height = height of content 
+元素的尺寸是这样计算的: width = width of content, height = height of content
 
 
 **border-box**
 
-width 和 height 包括 content, padding, border, 不包括 margin. 
+width 和 height 包括 content, padding, border, 不包括 margin.
 注意: padding 和 border 在 box 之内, 例如 `.box {width: 350px; border: 10px solide black;}`, 浏览器中渲染出 `.box {width: 350px}`
 
 元素的尺寸这样计算: width = border + padding + width of content, height = border + padding + height of content.
@@ -76,7 +76,7 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 1. 独占一行(从新的一行开始, 其后元素另起一行)
 2. 可以设置 height, width, line-height, vertical...
 3. 元素宽度默认和父元素一致, 不设置宽度有时会 100%
-4. 如果未定义高度, 则高度取决于内容的高度. 
+4. 如果未定义高度, 则高度取决于内容的高度.
 5. div, p, ul, li, table, form, h1~h6, blockquote, aside, article, address, figure, header, hgroup, hr, main, nav, footer, video, canvas, dd, dl
 
 
@@ -104,6 +104,7 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 - display: none 脱离文档流; visibility: hidden, 仍在文档流中, 占据空间
 - outline vs border: 和 border不同, outline 在元素盒子之上, 不会影响盒子的大小和位置. 因此, 它可以用来找 bug, 因为它不会改变页面的布局.
 - float vs absotule: If you want your div to interact and be effected by the other divs on the page, use floats. If you want you div to stay in the same place no matter how the dom changes around it, use absolute positioning; If the elements are meant to interact with each other, use floats. If an element is independent of the content around it, use absolute positioning.
+
 - 空白节点, block 元素内部的 inline 元素的行为表现，就好像 block 元素内部还有一个（更有可能两个-前后）看不见摸不着没有宽度没有实体的空白节点. 对于 inline 元素各种想得通或者想不通的行为表现，基本上都可以用 vertical-align 和 line-height 来解释.
 原因: vertical-align 默认值是 baseline, 也就是基线对齐。而基线是什么，基线就是字母 x 的下边缘, 字符 x 本身是有高度的, 于是，图片下面就留空了, 而 x 文字的高度是由 line-height 决定的
 解决: 1. 让 vertical-align 失效, display: block; 2. 使用其他的 vertical-align 值 3. 修改 line-height 的值
@@ -130,7 +131,7 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 
 设定希望定位的元素的宽度, 然后 float left/right
 
-1. 浮动元素不在文档流中, 不对包围它们的 block box 产生影响.  解决: 
+1. 浮动元素不在文档流中, 不对包围它们的 block box 产生影响.  解决:
 	- 包围的 block box 设定 overflow: hidden (width 100%)
 	- 在相邻的下个元素上 clear: both (包围的 block 仍为空)
 2. 对相邻的后面元素产生影响
@@ -143,11 +144,11 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 
 ```css
 .clearfix:after {
-    content:".";
-    display:block;
+    content: ".";
+    display: block;
     height:0;
-    visibility:hidden;
-    clear:both;
+    visibility: hidden;
+    clear: both;
 }
 ```
 
@@ -167,14 +168,14 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
  - 知道元素高度: .parent { postion: relative; }, .children { postion: absolute; top: 50%; height: 100px; margin-top: -50px }
  - 不知道元素高度: .parent { postion: relative }, .children { position: absolute; top: 50%; transform: translateY(-50%); }
  - 可以使用 flex, .parent { display: flex; flex-direction: column; justify-content: center; }
- 
- 
+
+
  **水平垂直居中**
  1. 元素有固定的宽度和高度: .parent { position: relative }, .child { width: 300px; height: 100px; padding: 20px; position: absolute; top: 50%; left: 50%; margin: -70px 0 0 -170px; }
  2. 不知道元素的宽度和高度: .parent { position: relative; } .child { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)};
- 3. 可以使用 flex, .parent { display: flex; justify-content: center; align-items: center; }
- 
- 
+ 3. 可以使用 flex, .parent { display: flex; justify-content: center; align-items: center; }, 或 .child { margin: auto; }
+
+
 ## 伪类
 
 :link 没有被访问过的链接
@@ -185,21 +186,21 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 
 顺序: Lord Vader Hates Fury Animals
 
-:link 和 :visited 只能用于 a 标签, :hover, :active, :focus  烤鸭用在任何元素上
+:link 和 :visited 只能用于 a 标签, :hover, :active, :focus  可以用在任何元素上
 
 :first-child
 :last-child
 
 :not
 :after
-:before 
+:before
 :target
 :enabled
 :checked
 
 :nth-child
 :nth-of-type
-例子: 
+例子:
 ```html
 <div>
     <h1>Hello</h1>
@@ -228,12 +229,12 @@ CSS 布局主要依赖3个基本概念: 定位, 浮动, margin
 - 定宽, 流体, 弹性布局
 
 * 流体布局
-尺寸用百分比而不是像素.
-最好设置 min-width, 
+尺寸用百分比 % 而不是像素.
+最好设置 min-width,
 
 * 弹性布局
 弹性布局设置元素宽度相对于字体大小(em)而不是浏览器宽度.
-最好设置 max-width 
+最好设置 max-width
 浏览器默认字体大小大多是 16px. 所以 font-size: 62.5%, 1em = 10px
 内部元素宽度用百分比, 包装元素宽度用 em
 
@@ -284,6 +285,7 @@ vertical-align: 元素自身的line-height
 bottom、left、right、top: 参照是元素的包含块。left和right是参照包含块的宽度，bottom和top是参照包含块的高度。
 
 transform: translate 参照是变换的边界框的尺寸（等于这个元素自己的border-box尺寸）
+transform: scaleY(-1) 对称
 
 当百分比值用于可继承属性时，只有结合参照值计算后的绝对值会被继承，而不是百分比值本身
 
@@ -297,27 +299,27 @@ vertical-align 的默认值就是基线
 
 ## 移动端
 
-ch 
-vw 
-vh 
-vmax 
+ch
+vw
+vh
+vmax
 vmin  
 
-在ios设备中，利用 overflow 来模拟滚动会出现卡顿的情况，可以通过设置-webkit-overflow-scrolling: touch来解决，原因是设置后ios会为其创建一个UIScrollView，利用硬件来加速渲染
+在ios设备中，利用 overflow 来模拟滚动会出现卡顿的情况，可以通过设置-webkit-overflow-scrolling: touch 来解决，原因是设置后 ios会为其创建一个 UIScrollView，利用硬件来加速渲染
 
 ## 字体
 
-在大多数浏览器中, 非 h 标签文字大小为 16px(base text size). 因此设置 100% 相当于 16px. 
+在大多数浏览器中, 非 h 标签文字大小为 16px(base text size). 因此设置 100% 相当于 16px.
 
 font-size 是一个继承属性.
 
-px: retina 屏幕每 inch 的 pixel 更多, 例如设置文字 16px, retina 屏幕浏览器会用 32px 去渲染文字. 
+px: retina 屏幕每 inch 的 pixel 更多, 例如设置文字 16px, retina 屏幕浏览器会用 32px 去渲染文字.
 
 percentage: base text size. font-size 的 % 参照父元素
 
 em: base text size. 1em == 100%. font-size 的 em 参照父元素 font-size, 其他属性(比如 padding)的 em 参照当前元素的 font-size.
 
-rem: root em, text size of the root element(html), 避免了 percentage 和 em 的多层继承问题. 
+rem: root em, text size of the root element(html), 避免了 percentage 和 em 的多层继承问题.
 
 Font Size Idea: px at the Root, rem for Components, em for Text Elements
 
@@ -371,7 +373,3 @@ position: sticky;
 object-fit
 background-size: cover
 white-space: nowrap;
-
-
-
-

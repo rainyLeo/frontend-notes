@@ -13,11 +13,11 @@
 - const
 - Constants are not a restriction on the value itself, but on the variable's assignment of that value. In other words, the value is not frozen or immutable because of const, just the assignment of it. If the value is complex, such as an object or array, the contents of the value can still be modified:
 
- ```js 
- { 
-    const a = [1, 2, 3]; 
-    a.push(4); 
-    console.log(a); // [1, 2, 3, 4] 
+ ```js
+ {
+    const a = [1, 2, 3];
+    a.push(4);
+    console.log(a); // [1, 2, 3, 4]
     a = 42; // TypeError!
  }
 
@@ -38,18 +38,18 @@ foo(); // ReferenceError
 
 ## Spread/Rest
 
-- Spread 
+- Spread
     * a suitable replacement for the apply() method in most circumstances.
 
 ```js
-// spread 
-- 
-var a = [2, 3, 4]; 
+// spread
+-
+var a = [2, 3, 4];
 var b = [1, ...a, 5];
 console.log( b ); // [1,2,3,4,5]
 
-// rest 
-function foo(x, y, ...z) { 
+// rest
+function foo(x, y, ...z) {
     console.log( x, y, z );
 }
 foo( 1, 2, 3, 4, 5 ); // 1 2 [3,4,5]
@@ -57,7 +57,7 @@ foo( 1, 2, 3, 4, 5 ); // 1 2 [3,4,5]
 
 ## Functions
 
-- Default Parameter 
+- Default Parameter
     * (不传或 传undefined 会用, null 不会用)
     * 参数不会和arguments对象同步(与ES5 strict mode中类似)
 
@@ -65,7 +65,7 @@ foo( 1, 2, 3, 4, 5 ); // 1 2 [3,4,5]
     * there can be only one rest parameter, and the rest parameter must be last
     * rest parameters cannot be used in an object literal setter
 
-- `name` property 
+- `name` property
 
 - `new.target`
 
@@ -87,7 +87,7 @@ function Person(name) {
 
 ```js
 /* Object Destructoring */
-var {x: bam, y: baz, z: bap} = {x: 4, y: 5, z: 6}; 
+var {x: bam, y: baz, z: bap} = {x: 4, y: 5, z: 6};
 console.log(bam, baz, bap); // 4 5 6
 
 var person = {
@@ -100,7 +100,7 @@ var person2 = {
   name: 'rainy',
   age: 20
 }
-({ name, age } = person2); 
+({ name, age } = person2);
 
 
 /* Array Destructoring */
@@ -127,7 +127,7 @@ var clonedColors2 = [...colors];
 
 
 /* Function Destructuring Parameters */
-function foo({x,y}) { 
+function foo({x,y}) {
     console.log( x, y );
 }
 foo({ y: 1, x: 2}); // 2 1
@@ -139,7 +139,7 @@ function f6({x = 10} = {}, {y} = {y: 10}) {
     console.log(x, y);
 }
 f6();
-f6( undefined, undefined ); 
+f6( undefined, undefined );
 f6( {}, undefined );
 f6( {}, {} );
 f6( undefined, {} );
@@ -155,9 +155,9 @@ f6({x:2},{y:3});
 
 ## Object literal
 
-- Concise Properties 
+- Concise Properties
 
-```js 
+```js
 var x = 2, y = 3,
   o = {
         x,
@@ -186,8 +186,8 @@ var o = {
   var prefix = "user_";
   var o = {
     baz: function(..){ .. },
-    [ prefix + "foo" ]: function(..){ .. }, 
-    [ prefix + "bar" ]: function(..){ .. } 
+    [ prefix + "foo" ]: function(..){ .. },
+    [ prefix + "bar" ]: function(..){ .. }
   };
   ```
 
@@ -196,13 +196,13 @@ var o = {
  `super` is only allowed in concise methods
 
 ```js
-var o1 = { 
+var o1 = {
     foo() {
     console.log( "o1:foo" );
   }
 };
 
-var o2 = { 
+var o2 = {
   foo() {
       super.foo();
       // 相当于 Object.getPrototypeOf(this).foo.call(this)
@@ -248,8 +248,8 @@ var name = 'leo';
 var greeting = `hello ${name}`;
 
 var text =
-`Now is the time for all good men 
-to come to the aid of their 
+`Now is the time for all good men
+to come to the aid of their
 country!`;
 
 function upper(s) {
@@ -285,24 +285,24 @@ let getTempItem = id => ({ id: id, name: "Temp" });
 
 // Lexical this in the arrow function callback in thesnippet now points to the same value as in the enclosing makeRequest(..) function.
 // In other words, => is a syntactic stand-in for var self = this.
-var controller = { 
+var controller = {
     makeRequest: function(..){
-        btn.addEventListener("click", () => { 
+        btn.addEventListener("click", () => {
             // ..
-            this.makeRequest(..); 
+            this.makeRequest(..);
         }, false );
-    } 
+    }
 };
 
 // what happens if you use => with a this-aware function that doesn’t need var self = this to work
-var controller = { 
+var controller = {
 	makeRequest: (..) => {
 		// ..
-		this.helper(..); 
+		this.helper(..);
 	},
-	helper: (..) => { 
+	helper: (..) => {
 		// ..
-	} 
+	}
 };
 controller.makeRequest(..);
 
@@ -325,7 +325,7 @@ o.fun(); // 2
 - For everything else - normal function declarations, longer multistatement function expressions, functions that need a lexical name identifier self-reference(recursion, etc.), and any other function that does't fit the previous characteristics - you should probably avoid => function syntax
 
 
-## Regular Expressions 
+## Regular Expressions
 
 - Unicode Flag
 - Sticky Flag
@@ -337,7 +337,7 @@ o.fun(); // 2
 - Iterators are meant to eliminate the complexity and error-prone nature of loops
 
 - Iterators are objects with a specific interface designed for iteration.
-- All iterator objects have a `next()` method that returns a result object. The result object has two properties: `value`, which is the next value, and `done`, which is a Boolean that’s true when there are no more values to return. 
+- All iterator objects have a `next()` method that returns a result object. The result object has two properties: `value`, which is the next value, and `done`, which is a Boolean that’s true when there are no more values to return.
 
 - The iterator keeps an internal pointer to a location within a collection of values, and with each call to the `next()` method, it returns the next appropriate value
 
@@ -365,7 +365,7 @@ function isIterable(object) {
 
 ## Generators
 
-- A generator is a function that returns an iterator. 
+- A generator is a function that returns an iterator.
 - Generator functions are indicated by an asterisk character `*` after the function keyword and use the new `yield` keyword.
 - Perhaps the most interesting aspect of generator functions is that they stop execution after each yield statement
 
@@ -376,7 +376,7 @@ Generator Uses
 
 ## Iterables and for-of Loops
 
-- Closely related to iterators, an iterable is an object with a `Symbol.iterator` property. 
+- Closely related to iterators, an iterable is an object with a `Symbol.iterator` property.
 - The well-known `Symbol.iterator` symbol specifies a function that returns an iterator for the given object
 - All collection objects `(arrays, sets, maps) and strings, NodeList` are iterables in ECMAScript 6, so they have a default iterator specified.
 - Iterables are designed to be used with a new addition to ECMAScript: the `for-of` loop.
@@ -404,7 +404,7 @@ Standad built-in values in JavaScript that are by default iterables(or provide t
 - you can also use the `Symbol.iterator` property to create your own iterables.
 
 
-## Modules 
+## Modules
 
 - both `import` and `export` must always appear in the top-level scope of their respective usage
 - when you `export` something, you’re exporting a binding (kinda like a pointer) to that thing (variable, etc.).
@@ -413,7 +413,7 @@ Standad built-in values in JavaScript that are by default iterables(or provide t
 
 ```js
 /*** export ***/
-// 1. named export 
+// 1. named export
 export function foo() {
 	// ..
 }
@@ -435,7 +435,7 @@ function foo() {
 }
 export default foo;
 
-export default function foo() {	
+export default function foo() {
 }
 
 
@@ -443,13 +443,13 @@ export default function foo() {
 
 import { foo, bar } from "foo";
 
-// If the module has just a default export 
+// If the module has just a default export
 import foo from "foo"
 
 // rename
 import {foo as newFoo} from "foo"
 
-// import entire API to a single module namespace binding 
+// import entire API to a single module namespace binding
 export function bar() {}
 export var x = 42;
 export function baz() {}
@@ -460,7 +460,7 @@ foo.x;
 
 ```
 
-import 路径, 相对路径是相对当前目录。绝对路径是相对入口文件, 如果不使用相对路径或者绝对路径，node默认会去node_modules/文件夹下去找.
+import 路径, 相对路径是相对当前目录。绝对路径是相对入口文件, 如果不使用相对路径或者绝对路径，node默认会去 node_modules/文件夹下去找.
 
 
 export 有 2 种, named export , default export
@@ -469,12 +469,12 @@ var, let or const 不能 紧跟着 export default
 export default 每个模块只能有一个
 
 ```js
-// named export 
-export { myFunction }; 
-export const foo = Math.sqrt(2); 
+// named export
+export { myFunction };
+export const foo = Math.sqrt(2);
 
-// default export 
-export default function() {} 
+// default export
+export default function() {}
 ```
 
 例题:
@@ -486,7 +486,7 @@ export default data
 import data from './data.js'
 
 // 例子 2
-export let data = {} 
+export let data = {}
 // 等于下面
 // let data = {}
 // export { data }
@@ -550,7 +550,7 @@ class Foo {
 }
 
 // equivalent of Bar.prototype = new Foo() or Bar.prototype = Object.create(Foo.prototype)
-class Bar extends Foo {  // Bar.prototype.__proto__ === Foo.prototype; 
+class Bar extends Foo {  // Bar.prototype.__proto__ === Foo.prototype;
 	constructor(a, b, c) {
     // equivalent of Foo.call(this, a, b)
 		super(a, b); // 放第一行
@@ -590,7 +590,7 @@ a.first(); // 1
 
 ## Collections
 
-**Map** 
+**Map**
 
 - allow object as keys, while object properties always coerce values into strings
 - cannot use `[]` bracket access syntax for setting and retrieving values
@@ -654,20 +654,20 @@ var y = {id: 2};
 s.add(x);
 s.add(y);
 s.add(x);
-s.has(x); // true 
+s.has(x); // true
 s.size; // 2
 s.delete(y);
 s.clear();
 s.size; // 0
 
 
-var x = {id: 1}, 
+var x = {id: 1},
     y = {id: 2};
 var s = new Set([x, y]);
 
 ```
 
-- Converting set with array 
+- Converting set with array
 
 ```js
 let set = new Set([1, 2, 3, 3, 3, 4, 5]),
@@ -676,7 +676,7 @@ console.log(array);             // [1,2,3,4,5]
 ```
 
 
-**WeakSet** 
+**WeakSet**
 
 - In a WeakSet instance, the add() method, has() method, and delete() method all throw an error when passed a nonobject.
 - Weak sets aren’t iterables and therefore cannot be used in a for-of loop.
@@ -697,7 +697,7 @@ console.log(array);             // [1,2,3,4,5]
  - copyWithin()
  - entries(), values(), keys()
  - creating Arrays and Subtypes
- 
+
  ```js
  var a = [1, 2, 3];
  [...a.values()]; // [1, 2, 3]
@@ -706,26 +706,26 @@ console.log(array);             // [1,2,3,4,5]
  [...a[Symbol.iterator]()]; // [1, 2, 3]
   ```
 
-- Object 
+- Object
  - Object.is()
  - Object.assign()
  - Object.setPrototypeOf()
  - Object.getOwnPropertySymbols()
- 
- 
-- String 
+
+
+- String
  - String.raw()
  - repeat()
- - String Inspection Functions 
+ - String Inspection Functions
     - startWith()
 	- endsWith()
 	- includes()
- - Unicode Functions 
- 
- 
+ - Unicode Functions
+
+
 ## ES2016
 
-- ** Exponentiation Operator 
+- ** Exponentiation Operator
 - Array.prototype.includes
 - 'use stric' in function limitation
 
@@ -754,9 +754,6 @@ https://github.com/tc39/proposals
 
 - @ decorator (stage-2)
 - String.prototype.trimStart / String.prototype.trimEnd
-- Shared memory and atomics	
-- Public Class Fields	
-- Promise.prototype.finally	
-
-
-
+- Shared memory and atomics
+- Public Class Fields
+- Promise.prototype.finally

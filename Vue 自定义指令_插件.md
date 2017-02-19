@@ -111,7 +111,6 @@ Vue.directive('demo', function (el, binding) {
 })
 ```
 
-
 ## 插件
 
 **写一个插件**
@@ -123,7 +122,7 @@ Vue.directive('demo', function (el, binding) {
   3. 提供全局 mixnin 增加一些组件选项, 例如 vuex
   4. 增加一些 Vue 实例方法, 通过把它们附加到 Vue.prototype
   5. 一个提供资金 API 的库, 同时注入以上的组合, 例如 vue-router
-  
+
 Vue 插件应该暴露一个 `install` 方法. 该方法接收 Vue 构造器作为第一个参数, 并带有 options
 
 ```js
@@ -179,20 +178,3 @@ var VueRouter = require('vue-router')
 // Don't forget to call this
 Vue.use(VueRouter)
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

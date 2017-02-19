@@ -45,7 +45,7 @@ var array = [1, 12, 2, 3, 4];
 var max1 = Math.max.apply(null, arr);
 
 var max2 = 0
-arr.map(e => max2 = (e > max2) ? e : max2);
+arr.forEach(e => max2 = (e > max2) ? e : max2);
 
 var max3 = arr.reduce((prev, cur) => (prev > cur) ? prev : cur);
 
@@ -76,15 +76,15 @@ arr.join().split(',').map(e => +e);
 function type(obj) {
 	var toString = Object.prototype.toString;
 	var map = {
-	    '[object Boolean]'  : 'boolean', 
-	    '[object Number]'   : 'number', 
-	    '[object String]'   : 'string', 
-	    '[object Function]' : 'function', 
-	    '[object Array]'    : 'array', 
-	    '[object Date]'     : 'date', 
-	    '[object RegExp]'   : 'regExp', 
+	    '[object Boolean]'  : 'boolean',
+	    '[object Number]'   : 'number',
+	    '[object String]'   : 'string',
+	    '[object Function]' : 'function',
+	    '[object Array]'    : 'array',
+	    '[object Date]'     : 'date',
+	    '[object RegExp]'   : 'regExp',
 	    '[object Undefined]': 'undefined',
-	    '[object Null]'     : 'null', 
+	    '[object Null]'     : 'null',
 	    '[object Object]'   : 'object',
       '[object Map]'      : 'map',
       '[object Set]'      : 'set'
@@ -325,10 +325,10 @@ function bind(f, o) {
 }
 
 Function.prototype.bind = function () {
-	var fn = this, 
+	var fn = this,
 		args = Array.prototype.slice.call(arguments),
 		object = args.shift();
-	
+
 	return function() {
 		return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
 	};
@@ -381,7 +381,7 @@ Function.prototype.partial = function() {
 function list() {
   return Array.prototype.slice.call(arguments);
 }
-var leading10List = list.bind(null, 10); 
+var leading10List = list.bind(null, 10);
 var list1 = leading10List(); // [10]
 var list2 = leading10List(1,2,3); // [10, 1, 2, 3]
 
@@ -450,7 +450,7 @@ console.time(t)
 fibonacci(42)
 console.timeEnd(t)
 
-// memorization / memoize 
+// memorization / memoize
 function memoizer(memo, fn) {
   var recur = function(n) {
     var result = memo[n];
@@ -500,7 +500,7 @@ function find(start, target, history) {
 			return find(start + 5, target, '(' + history + ' +5)') ||
 						 find(start * 3, target, '(' + history + ' *3)')
 		}
-	
+
 }
 find(1, 34, '1')
 
@@ -514,7 +514,7 @@ function gcd(a, b) {
   return a
 }
 var gcdmemo = memorize(gcd);
-gcdmemo(85, 187); // 17 
+gcdmemo(85, 187); // 17
 
 var factorial = memorize(function(n) {
   return (n <= 1) ? 1 : n * factorial(n - 1);
@@ -558,7 +558,7 @@ function extend(to, from) {
   return to;
 }
 
-// plain object 
+// plain object
 function isPlainObject(obj) {
 
   // Basic check for Type object that's not null
@@ -569,12 +569,12 @@ function isPlainObject(obj) {
       var proto = Object.getPrototypeOf(obj);
       return proto === Object.prototype || proto === null;
     }
-    
+
     // Otherwise, use internal class
     // This should be reliable as if getPrototypeOf not supported, is pre-ES5
     return Object.prototype.toString.call(obj) == '[object Object]';
   }
-  
+
   // Not an object
   return false;
 }
@@ -630,12 +630,12 @@ document.addEventListener('scroll', debounce(handleScroll, 200), false);
 function throttle(func, wait, mustRun) {
     var timeout,
         startTime = new Date();
- 
+
     return function() {
         var context = this,
             args = arguments,
             curTime = new Date();
- 
+
         clearTimeout(timeout);
         // 如果达到了规定的触发时间间隔，触发 handler
         if(curTime - startTime >= mustRun){
@@ -661,7 +661,7 @@ window.addEventListener('scroll',throttle(realFunc,500,1000));
 
 // function throttling
 // Using a timer to break up a long-running task
-// 
+//
 // var tbody = document.getElementsByTagName("tbody")[0];
 // for (var i = 0; i < 20000; i++) {
 //   var tr = document.createElement("tr");
@@ -671,13 +671,13 @@ window.addEventListener('scroll',throttle(realFunc,500,1000));
 //     tr.appendChild(td);
 //   }
 //     tbody.appendChild(tr);
-//   }  
+//   }
 var rowCount = 20000;
 var divideInto = 4;
 var chunkSize = rowCount/divideInto;
 var iteration = 0;
 var table = document.getElementsByTagName("tbody")[0];
-  
+
   setTimeout(function generateRows(){
     var base = (chunkSize) * iteration;
     for (var i = 0; i < chunkSize; i++) {
@@ -705,4 +705,3 @@ function compareFunction(propertyName) {
 var data = [{name: 'leo', age: 24}, {name: 'rainy', age: 23}, {name: 'jade', age: 30}];
 data.sort(compareFunction('name'));
 // data.sort(function(a,b){return a.name < b.name});
- 

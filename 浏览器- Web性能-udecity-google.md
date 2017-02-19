@@ -1,20 +1,20 @@
 
-Converting HTML to the DOM 
+Converting HTML to the DOM
 
 DOM + CSSOM -> Render Tree -> Layout -> Paint
 (JavaScript)
 
-## Get Render Tree 
+## Get Render Tree
 
-1. When you request a URL and hit Enter, the browser sends a request to the server. Then get the response (html). 
-2. Parsing. Characters(HTML response) -> Tokens -> Nodes -> DOM Tree 
-3. Converting CSS to CSSOM. Characters -> Tokens -> Nodes -> CSSOM 
+1. When you request a URL and hit Enter, the browser sends a request to the server. Then get the response (html).
+2. Parsing. Characters(HTML response) -> Tokens -> Nodes -> DOM Tree
+3. Converting CSS to CSSOM. Characters -> Tokens -> Nodes -> CSSOM
 
 
 - Render tree only captures visible content
-- `display: none` will be skipped 
+- `display: none` will be skipped (会在 DOM 树里面)
 
-## Layout 
+## Layout
 
 compute the location and the size of the render tree elements.
 
@@ -30,7 +30,7 @@ telling the browser the width of the layout viewport should be equal to the devi
 
 ## Paint
 
-Putting pixels on the page 
+Putting pixels on the page
 
 
 ## Example
@@ -50,9 +50,9 @@ Putting pixels on the page
 2. Request CSS & JS resources
 3. Parse CSS and construct the CSSOM tree
 4. Execute JS
-5. Constructing the DOM 
+5. Constructing the DOM
 6. Merge DOM and CSSOM into the Render Tree
-7. Run layout, paint 
+7. Run layout, paint
 
 
 ## DevTools
@@ -78,7 +78,7 @@ pagespeed website
 - The browser downloads all CSS resources, regardless of blocking or non-blocking behavior
 
 Critical rendering path requires both the DOM and the CSSOM to construct the render tree. This creates an important performance implication: `both HTML and CSS are render blocking resources`.
- 
+
 * Media type and media queries
 	`<link href="print.css" rel="stylesheet" media="print">`
 	`<link href="other.css" rel="stylesheet" media="(min-width: 40em)">`
@@ -93,21 +93,21 @@ async: Set this Boolean attribute to indicate that the browser should, if possib
  `<script scr="externaljs" async></script>`
  - does not block DOM construction
  - does not block on CSSDOM
- 
+
 Blocking: `<script src="anExteralScript.js"></script>`
 Inline: `<script>document.write("this is an inline script")</script>`
 Async: `<script async src="anExternalScript.js"></script>`
 
 
 Inline JS will alwayse block CSSOM (one exception, put it above css link)
- 
-There is also a `defer` attribute that you can add to the script tag that tells the parser that the script should wait to execute until after the document is loaded, whereas `async` lets the script run in the background while the document is being parsed. 
- 
+
+There is also a `defer` attribute that you can add to the script tag that tells the parser that the script should wait to execute until after the document is loaded, whereas `async` lets the script run in the background while the document is being parsed.
+
  load, DOMContentLoaded
- 
+
 async 脚本在script文件下载完成后会立即执行,并且其执行时间一定在 window的load事件触发之前。这意味着多个async脚可能不会按其在页面中的出现次序顺序执行。
 与此相对，浏览器确保多个 defer 脚本按其在HTML页面中的出现顺序依次执行,且执行时机为DOM解析完成后，document的DOMContentLoaded 事件触发之前。
- 
+
 ## General Strategies and CRP
 
 * Minify, Compress, Cache
@@ -123,7 +123,7 @@ async 脚本在script文件下载完成后会立即执行,并且其执行时间�
 2. Reduce Critical resources
 3. Shorten CRP length
 
-## CRP 
+## CRP
 
 - Critical Resource: Resource that could block initial rendering of the page.
 - Critical Path Length: Number of roundtrips, or the total time required to fetch all of the critical resources.
@@ -135,30 +135,10 @@ The general sequence of steps to optimize the critical rendering path is:
 2. Minimize number of critical resources: eliminate them, defer their download, mark them as async, and so on.
 3. Optimize the number of critical bytes to reduce the download time (number of roundtrips).
 4. Optimize the order in which the remaining critical resources are loaded: download all critical assets as early as possible to shorten the critical path length.
- 
+
 ## Preload Scanne
 
 
 ## Drwa CRP diagram
 Use Ctrl+Shift+I on Windows, or Cmd+Opt+I on Mac to open the DevTools.
 Use Ctrl+Shift+R on Windows, or Cmd+Shift+R on Mac to reload the page and capture the timeline. PROTIP: In order to use the hard reload trick to capture the full trace, you have to load the page first, open Timeline in DevTools, start and stop recording, and then use the shortcuts described above to reload the page. Basically, open DevTools and hit the record button twice before doing a hard reload. Check out DevTools emulation docs for a detailed walkthrough of how to emulate a mobile device.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

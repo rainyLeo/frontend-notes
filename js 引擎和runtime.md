@@ -1,9 +1,9 @@
-## engine vs runtime 
+## engine vs runtime
 
 
-engine: 执行 JS 代码,   V8, SpiderMonkey...
+engine: 执行 JS 代码, V8, SpiderMonkey...
 
-engine: callstack + heap 
+engine: call-stack + heap
 
 runtime: 一种执行环境, 它给执行中的程序提供内置的库, 比如浏览器的 runtime 给提供了Window 对象, DOM API等; Node 的 runtime 提供了 FileSystem, Cluster等
 
@@ -12,13 +12,13 @@ js engine + js runtime  = host environment (浏览器, node)
 
 engine 运行在 host environment (浏览器)  中
 
-runtime 对 engine 就是 linker 对 compiler 
+runtime 对 engine 就是 linker 对 compiler
 
 engine 是 runtime 的一部分
 
 runtime 就是 host environment? 错
 
-event loop 存在于 host environment 中, 它把 task queue 中的任务分配 engine 来执行, 
+event loop 存在于 host environment 中, 它把 task queue 中的任务分配 engine 来执行,
 
 , (ES6把 event loop 包含在了 engine 中?).
 

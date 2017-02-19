@@ -31,9 +31,9 @@ Typically, a function’s activation object is destroyed when the execution cont
 
 *Object*  
 object member access tends to be slower than accessing data in literals or variables, and in some browsers slower than accessing array items.  
- 
+
 - the deeper into the prototype chain that a member exists, the slower it is to retrieve
-  
+
 
 ## DOM Scripting  
 
@@ -43,16 +43,16 @@ In general, for any type of DOM access it’s best to use a local variable when 
 
 For many use cases that require a single loop over a relatively small collection, just caching the length of the collection is good enough. But looping over an array is faster that looping over a collection
 
-**Accessing and modifying DOM elements** 
+**Accessing and modifying DOM elements**
 
 Simply accessing a DOM element comes at a price—the “toll fee” discussed earlier. Modifying elements is even more expensive because it often causes the browser to recalculate changes in the page geometry. Don't do it in loops  
 
 Cloning nodes is more efficient in most browsers, but not by a big margin.
-  
+
 Element nodes is faster, looping over `children` is faster than `childNodes`
 
-*HTML Collections* 
- 
+*HTML Collections*
+
 - getElementByID(), getElementsbyClassName(), getElementsByTagName(), document.images, document.links, document.forms,
 
 - live, meaning that they are automatically updated when the underlying document is updated  
@@ -70,7 +70,7 @@ Element nodes is faster, looping over `children` is faster than `childNodes`
 Once the browser has downloaded all the components of a page—HTML markup, JavaScript, CSS, images—it parses through the files and creates two internal data structures:
 
 A DOM tree  
-  -  A representation of the page structure
+  - A representation of the page structure
 A render tree
   - A representation of how the DOM nodes will be displayed
 Once the DOM and the render trees are constructed, the browser can display (`paint`) the elements on the page.  
@@ -103,7 +103,7 @@ Another way to apply style changes only once is to change the CSS `class name` i
 2. Batching DOM changes  
 
   When you have a number of changes to apply to a DOM element, you can reduce the number of repaints and reflows by following these steps:
-  - Take the element out of the document flow. 
+  - Take the element out of the document flow.
   - Apply multiple changes.
   - Bring the element back to the document.  
 
@@ -117,7 +117,7 @@ Another way to apply style changes only once is to change the CSS `class name` i
 
   Take Elements Out of the Flow for Animations  
 
- 
+
 
 **Handling user interaction through DOM events**  
 
@@ -158,4 +158,3 @@ Cache Data
 
 
 window.requestAnimationFrame()
-
