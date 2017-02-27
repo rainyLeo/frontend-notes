@@ -4,8 +4,8 @@ Webpack at its core, is a code bundler.It takes your code, transforms and bundle
 
 there are three main steps Webpack needs no know.
 	1. the starting point of your application, or your root JavaScript file.
-	2. which transformation to make on your code 
-	3. which location it should save the new transformed code 
+	2. which transformation to make on your code
+	3. which location it should save the new transformed code
 
 ### Plugins
 
@@ -36,6 +36,7 @@ Webpack 编译后会变成：
 
 <img src="/绝对地址.jpg">
 但如果你用 Vue.js 来定义图片路径：
+
 ```html
 <template>
   <img :src="src">
@@ -66,7 +67,7 @@ The url loader works like the file loader, but can return a Data Url if the file
 
 
 
-### Command 
+### Command
 
 `webpack`
 `webpack-dev-server`
@@ -74,7 +75,7 @@ The url loader works like the file loader, but can return a Data Url if the file
 `--inline` live reload
 `--hot` live reload
 
-### Tips 
+### Tips
 
 - Webpack configurations file: `webpack.config.js` should be located in the root directory of our project
 - entry: `./` 不能少, 否则 ERROR in multi main
@@ -83,24 +84,24 @@ The url loader works like the file loader, but can return a Data Url if the file
 ```js
 // In webpack.config.js
 module.exports = {
-	
+
 	// STEP 1
 	// webpack allows you to have one or many entry points of your application. if you just have one, you can just use a string.If you have more, you can use an array.
 	entry: [
 		'./app/index.js'
 	],
-	
+
 	// STEP 2
 	// Each loader needs to be composed of three things
 	// 1. which file type to run the specific transformation on.
 	// 2. which directories should be included or excluded from being transformed.
-	// 3. the specific loader we want to run 
+	// 3. the specific loader we want to run
 	module: {
 		loaders: [
 			{test: /\.coffee$/, exclude: /node_modules/, loader: "coffee-loader"}
 		]
 	},
-	
+
 	// STEP 3
 	// __dirname: the name of directory that the currently executing script resides in
 	// So now when Webpack runs, our code will be transformed and then can be referenced at ourApp/dist/index_bundle.js
@@ -115,14 +116,14 @@ module.exports = {
 `html-webpack-plugin`: A plugin,  instead of actually copying our index.html file, it's just gong to use that file as a template and create a brand new index.html file.
 
 ```js
-var HtmlWebpackPlugin = require('html-webpack-plugin') 
-var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({ 
+var HtmlWebpackPlugin = require('html-webpack-plugin')
+var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 	// points to our regular index.html file located in our app directory
-	template: __dirname + '/app/index.html', 
+	template: __dirname + '/app/index.html',
 	// keep the name index.html
-	filename: 'index.html', 
+	filename: 'index.html',
 	// inject a script which reference the name of the output file(index_bundle.js) and put it in the body of this newly created HTML file
-	inject: 'body' 
+	inject: 'body'
 });
 
 module.exports = {
@@ -139,13 +140,13 @@ module.exports = {
 		path: __dirname + '/dist'
 	},
 	plugins: [HTMLWebpackPluginConfig]
-}; 
-	
+};
+
 
 ```
 
 Now if we run `webpack` from our command line, inside of our dist folder we'll have tow files. `index_bundle.js` and `index.html`.
-`index_bundle.js` is the result of taking our entry code and running it through the loaders. While index.html was created on the fly with HTMLWebpackPluginConfig 
+`index_bundle.js` is the result of taking our entry code and running it through the loaders. While index.html was created on the fly with HTMLWebpackPluginConfig
 
 ** Run webpack **
 `npm install -g webpack` intall webpack globally then you have access to the webpack CLI (If you haven't, you just have to use npm scripts to run them)
@@ -168,5 +169,3 @@ module: {
 }
 
 ```
-
-

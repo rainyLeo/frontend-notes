@@ -21,12 +21,11 @@ Each box is given a position with respect to its containing block, but it is not
 - Block level elements and block boxs
 - Inline level elements and inline boxs
 
-- display: block; 
+- display: block;
 This value causes an element to generate a block box.
 - display: inline-block
 This value causes an element to generate an inline-level block container. The inside of an inline-block is formatted as a block box, and the element itself is formatted as an atomic inline-level box.
 - display: inline
-This value causes an element to generate one or more inline boxes.
 This value causes an element to generate one or more inline boxes.
 - list-item
 This value causes an element (e.g., LI in HTML) to generate a principal block box and a marker box. For information about lists and examples of list formatting, please consult the section on lists.
@@ -78,7 +77,7 @@ In general, the left edge of a line box touches the left edge of its containing 
 
 **Floats**
 
-A float is a box that is shifted to the left or right on the current line. The most interesting characteristic of a float (or "floated" or "floating" box) is that content may flow along its side (or be prohibited from doing so by the 'clear' property). Content flows down the right side of a left-floated box and down the left side of a right-floated box. 
+A float is a box that is shifted to the left or right on the current line. The most interesting characteristic of a float (or "floated" or "floating" box) is that content may flow along its side (or be prohibited from doing so by the 'clear' property). Content flows down the right side of a left-floated box and down the left side of a right-floated box.
 
 A floated box is shifted to the left or right until its outer edge touches the containing block edge or the outer edge of another float. If there is a line box, the outer top of the floated box is aligned with the top of the current line box.
 
@@ -111,15 +110,3 @@ Values other than 'none' potentially introduce clearance. Clearance inhibits mar
 **Comparision of normal flow, floats, absolute positioning**
 
 **Layered presentation**
-
-
-
-
-
-
-
-
-
-
-
-

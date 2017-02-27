@@ -293,6 +293,11 @@ function shuffle2(array) {
   return _array;
 }
 
+// shuffle 3
+array.sort(function() {
+  return Math.random() - 0.5
+})
+
 // isNumber
 function isNum(obj) {
   return !isNaN(parseFloat(obj, 10)) && Number.isFinite(obj); // 如果'5' true, 换为isFinite(obj)
