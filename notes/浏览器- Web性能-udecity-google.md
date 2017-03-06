@@ -62,7 +62,7 @@ pagespeed website
 
 ## Optimizing the DOM
 
-* minimy
+* minify
 * compress
 * http caching
 
@@ -99,7 +99,7 @@ Inline: `<script>document.write("this is an inline script")</script>`
 Async: `<script async src="anExternalScript.js"></script>`
 
 
-Inline JS will alwayse block CSSOM (one exception, put it above css link)
+Inline JS will always block CSSOM (one exception, put it above css link)
 
 There is also a `defer` attribute that you can add to the script tag that tells the parser that the script should wait to execute until after the document is loaded, whereas `async` lets the script run in the background while the document is being parsed.
 

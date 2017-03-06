@@ -23,7 +23,7 @@
 
   - 多路复用: 即连接共享, 通过多个 request 共享一个 tcp 连接的方式, 接收方可以根据request的 id将request再归属到各自不同的服务端请求里面
   - 压缩头部: 前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。
-  - 二进制分帧: HTTP1.x的解析是基于文本. 在http2二进制分帧层上，HTTP2.0会将所有传输的信息分割为更小的消息和帧,并对它们采用二进制格式的编码，其中HTTP1.x的首部信息会被封装到Headers帧，request body则封装到Data帧里面;改进传输性能，实现低延迟和高吞吐量
+  - 二进制分帧: HTTP1.x的解析是基于文本. 在http2二进制分帧层上，HTTP2.0会将所有传输的信息分割为更小的消息和帧,并对它们采用二进制格式的编码，其中HTTP1.x的首部信息会被封装到Headers帧，request body则封装到 Data帧里面;改进传输性能，实现低延迟和高吞吐量
   - 服务器推送: 在客户端请求之前发送数据的机制
 
 - HTTP Response的Header
@@ -234,7 +234,10 @@ html5提供的 Websocket, ajax 长时间连接, ajax 长轮询
 
 **你有用过哪些前端性能优化的方法**
 
-请求数量: 合并脚本和样式表, iconfont，拆分初始化负载，划分主域 请求带宽: 开启 GZip，精简 JavaScript，移除重复脚本，图像优化 缓存利用: 使用 CDN，使用外部 JavaScript 和 CSS，减少 DNS 查找 页面结构: 将样式表(影响样式的内容)放在顶部，将脚本放在底部，尽早刷新文档的输出 "拆分初始化负载"的目标是将页面一开始加载时不需要执行的资源从所有资源中分离出来，等到需要的时候再加载。
+请求数量: 合并脚本和样式表, iconfont，拆分初始化负载，划分主域
+请求带宽: 开启 GZip，精简 JavaScript，移除重复脚本，图像优化
+缓存利用: 使用 CDN，使用外部 JavaScript 和 CSS，减少 DNS 查找, expires, Cache-Control 
+页面结构: 将样式表(影响样式的内容)放在顶部，将脚本放在底部，尽早刷新文档的输出 "拆分初始化负载"的目标是将页面一开始加载时不需要执行的资源从所有资源中分离出来，等到需要的时候再加载。
 
 划分主域 + 减少 DNS 查找：建议在一个网站里面使用至少2个域，但不多于4个域来提供资源
 
@@ -396,4 +399,9 @@ content方面
 
 区别：
 
-display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见 display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显式 修改常规流中元素的display通常会造成文档重排。修改visibility属性只会造成本元素的重绘。 读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容
+display:none; 会让元素完全从渲染树中消失(仍在 DOM 树)，渲染的时候不占据任何空间；
+visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见
+display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；
+visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显式
+修改常规流中元素的 display 通常会造成文档重排。修改visibility属性只会造成本元素的重绘。
+读屏器不会读取display: none;元素内容；会读取visibility: hidden;元素内容

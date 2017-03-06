@@ -169,3 +169,5 @@ module: {
 }
 
 ```
+
+## Code Splitting

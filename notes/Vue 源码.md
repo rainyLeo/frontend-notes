@@ -1,3 +1,5 @@
+# 响应式系统
+
 ## Dep
 
 A dep is an observable(publisher) that can have multiple directives(subscriber) subscribing to it.
@@ -100,19 +102,11 @@ Dep 添加/删除订阅者(watcher), watcher 给自己添加 Dep, 或把自己�
    is collected as a "deep" dependency.
 
 
-
-
-
-
 ## Observer
-
 
 Observer 的作用仅仅是把 `vm._data` 进行了 getter/setter 转化
 
-Observer class that are attached to each observed
-object. Once attached, the observer converts target
-object's property keys into getter/setters that
-collect dependencies and dispatches updates.
+Observer class that are attached to each observed object. Once attached, the observer converts target object's property keys into getter/setters that collect dependencies and dispatches updates.
 
 - walk
  Walk through each property and convert them into
@@ -153,10 +147,6 @@ collect dependencies and dispatches updates.
 
  Collect dependencies on array elements when the array is touched, since
  we cannot intercept array element access like property getters
-
-
-
-
 
 ## scheduler
  - resetSchedulerState
