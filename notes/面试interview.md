@@ -236,7 +236,7 @@ html5提供的 Websocket, ajax 长时间连接, ajax 长轮询
 
 请求数量: 合并脚本和样式表, iconfont，拆分初始化负载，划分主域
 请求带宽: 开启 GZip，精简 JavaScript，移除重复脚本，图像优化
-缓存利用: 使用 CDN，使用外部 JavaScript 和 CSS，减少 DNS 查找, expires, Cache-Control 
+缓存利用: 使用 CDN，使用外部 JavaScript 和 CSS，减少 DNS 查找, expires, Cache-Control
 页面结构: 将样式表(影响样式的内容)放在顶部，将脚本放在底部，尽早刷新文档的输出 "拆分初始化负载"的目标是将页面一开始加载时不需要执行的资源从所有资源中分离出来，等到需要的时候再加载。
 
 划分主域 + 减少 DNS 查找：建议在一个网站里面使用至少2个域，但不多于4个域来提供资源
@@ -399,7 +399,7 @@ content方面
 
 区别：
 
-display:none; 会让元素完全从渲染树中消失(仍在 DOM 树)，渲染的时候不占据任何空间；
+display: none; 会让元素完全从渲染树中消失(仍在 DOM 树)，渲染的时候不占据任何空间；
 visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见
 display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；
 visibility: hidden;是继承属性，子孙节点消失由于继承了hidden，通过设置visibility: visible;可以让子孙节点显式

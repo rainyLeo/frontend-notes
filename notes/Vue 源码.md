@@ -123,7 +123,7 @@ Observer class that are attached to each observed object. Once attached, the obs
  Augment an target Object or Array by intercepting
  the prototype chain using __proto__
  增强对象或数组, 使其能够检测变化. 一是拦截数组的 mutation methods,
- 二是提供 $set, $remove
+ 二是提供 $set
 
 - copyAugment
 

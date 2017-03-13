@@ -31,6 +31,7 @@ $ man git-<verb>
 
 
 - `git push [remote-repo-name] [branch-name]`
+	Push the specified branch to <remote>, along with all of the necessary commits and internal objects.
 	Updates remote refs using local refs, while sending objects necessary to complete the given refs.
 
 	如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令
@@ -39,12 +40,16 @@ $ man git-<verb>
 	只有在所克隆的服务器上有写权限，或者同一时刻没有其他人在推数据，这条命令才会如期完成任务。如果在你推数据前，已经有其他人推送了若干更新，那你的推送操作就会被驳回。你必须先把他们的更新抓取到本地，合并到自己的项目中，然后才可以再次推送
 
 	-f(--force): Usually, the command refuses to update a remote ref that is not an ancestor of the local ref used to overwrite it.This flag disables these checks, and can cause the remote repository to lose commits
+	--all: Push all of your local branches to the specified remote
 
 - `git clone`
 	Clone a repository into a new directory
 
 - `git fetch [remote-name]`
 	Download objects and refs from another repository
+
+- `git fetch [remote-name] [branch-name]`
+	Download objects and refs from another repository , but only the specified branch
 
 	如果是克隆了一个仓库，此命令会自动将远程仓库归于 origin 名下。所以，git fetch origin 会抓取从你上次克隆以来别人上传到此远程仓库中的所有更新（或是上次 fetch 以来别人提交的更新）。有一点很重要，需要记住，fetch 命令只是将远端的数据拉到本地仓库，并不自动合并到当前工作分支，只有当你确实准备好了，才能手工合并。
 
@@ -91,9 +96,14 @@ $ man git-<verb>
 	`git remote show [remote-name]`
 	查看某个远程仓库的详细信息
 
-- `git pull`
+- `git pull [remote]`
+ 相对于:
+ 	`git fetch [remote]`
+	`git merge origin/[current-branch]`
 	Fetch from and integrate with another repository or a local branch.
 	Incorporates changes from a remote repository into the current branch. In its default mode, git pull is shorthand for `git fetch` followed by `git merge FETCH_HEAD`.
+
+	`--rebase`
 
 - `git branch`
 	List, create, or delete branches
@@ -122,8 +132,11 @@ $ man git-<verb>
 - `git checkout`
 	Switch branches or restore working tree files
 
-	`git checkout -b [branchname]`
+	`git checkout -b [new-branch]`
 	add new branch and checkout
+
+	`git checkout -b [new-branch] [existing-branch]`
+	Same as the above invocation, but base the new branch off of <existing-branch> instead of the current branch
 
 - `git merge`
 	Join two or more development histories together.
@@ -164,7 +177,7 @@ Merge
 
 Undoing
 	* re-commit
-	```
+	```git
 	git commit -m 'initial commit'
 	git add forgotten_file
 	git commit --amend

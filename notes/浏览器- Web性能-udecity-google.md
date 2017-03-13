@@ -1,3 +1,49 @@
+## 性能优化
+1. http 请求数量
+ - 减少请求数量: 合并文件, CSS sprites, data: URL(base64), 避免空的 src
+ 拆分初始化负载(将页面一开始加载时不需要执行的资源从所有资源中分离出来，等到需要的时候再加载), 划分主域
+2. http 请求带宽
+ - 压缩, GZIP
+ - 最小化 JS 和 CSS
+ - 减小 Cookie 大小
+ - 图片优化
+  <!-- 预加载, 条件渲染, 代码分割 -->
+3. 缓存
+ - CDN
+ - 添加 Expires, Cache-Control 头部
+  * 静态内容, expires 设置很长时间(变化时改文件名, 或根据文件内容生产 hash, md5?)
+	* 动态内容, 用 Cache-Control
+ - 使用外部 CSS 和 JS(可缓存)
+ - 设置 ETag( If-None-Match , 304)
+ - 减少 DNS 查找
+
+
+4. 代码结构
+ - CSS 样式放上面(网页逐步渲染, 避免无样式内容的闪烁), JS 放底部
+ (CSS: browsers won't render your page before loading the CSS (to avoid a flash of unstyled content)
+ (JS: block browsers from parsing after the tag before it is loaded and complete)
+ - 减少 DOM 操作
+5. 代码校验
+ - 避免重定向
+
+JS 的下载和执行会阻塞 DOM 生成
+
+
+When the HTML parser encounters a script tag, it pauses its process of constructing the DOM and yields control to the JavaScript engine; after the JavaScript engine finishes running, the browser then picks up where it left off and resumes DOM construction.
+By default, JavaScript execution is "parser blocking". when the browser encounters a script in the document it must pause DOM construction, hand over control to the JavaScript runtime, and let the script execute before proceeding with DOM construction
+
+in the case of an external JavaScript file the browser must pause to wait for the script to be fetched from disk, cache, or a remote server, which can add tens to thousands of milliseconds of delay to the critical rendering path.
+
+Adding the async keyword to the script tag tells the browser not to block DOM construction while it waits for the script to become available, which can significantly improve performance.
+
+JavaScript execution pauses until the CSSOM is ready.
+
+由于http2多路复用的优势，前端应用团队无须采取把多个文件合并成一个，生成雪碧图之类的方法减少网络请求。除此之外，http2对于前端开发的影响并不大
+
+
+
+
+## Udecity
 
 Converting HTML to the DOM
 
@@ -58,7 +104,7 @@ Putting pixels on the page
 ## DevTools
 You can't optimize what you can't measure
 
-pagespeed website
+pages peed website
 
 ## Optimizing the DOM
 
@@ -87,7 +133,7 @@ Critical rendering path requires both the DOM and the CSSOM to construct the ren
 
 ## Optimizing JS
 
-async: Set this Boolean attribute to indicate that the browser should, if possible, execute the script asynchronously. It has no effect on inline scripts (i.e., scripts that don't have the src attribute).
+async: Set this Boolean attribute to indicate that the browser should, if possible, execute the script asynchronously(异步执行, 下载也会延迟?). It has no effect on inline scripts (i.e., scripts that don't have the src attribute).
 
  *async attribute*
  `<script scr="externaljs" async></script>`
@@ -101,12 +147,18 @@ Async: `<script async src="anExternalScript.js"></script>`
 
 Inline JS will always block CSSOM (one exception, put it above css link)
 
-There is also a `defer` attribute that you can add to the script tag that tells the parser that the script should wait to execute until after the document is loaded, whereas `async` lets the script run in the background while the document is being parsed.
+There is also a `defer` attribute that you can add to the script tag that tells the parser that the script should wait to execute until after the document is loaded, whereas `async` lets the script run in the background while the document is being parsed.(后台执行?)
 
  load, DOMContentLoaded
 
-async 脚本在script文件下载完成后会立即执行,并且其执行时间一定在 window的load事件触发之前。这意味着多个async脚可能不会按其在页面中的出现次序顺序执行。
-与此相对，浏览器确保多个 defer 脚本按其在HTML页面中的出现顺序依次执行,且执行时机为DOM解析完成后，document的DOMContentLoaded 事件触发之前。
+An asynchronous script has several advantages:
+
+ * The script is no longer parser blocking and is not part of the critical rendering path.
+ * Because there are no other critical scripts, the CSS doesn't need to block the domContentLoaded event.
+ * The sooner the domContentLoaded event fires, the sooner other application logic can begin executing.
+
+async 脚本在script文件下载完成后会立即执行,并且其执行时间一定在 window 的 load事件触发之前。这意味着多个 async脚可能不会按其在页面中的出现次序顺序执行。
+与此相对，浏览器确保多个 defer 脚本按其在HTML页面中的出现顺序依次执行,且执行时机为 DOM 解析完成后，document的 DOMContentLoaded 事件触发之前。
 
 ## General Strategies and CRP
 
@@ -141,4 +193,5 @@ The general sequence of steps to optimize the critical rendering path is:
 
 ## Drwa CRP diagram
 Use Ctrl+Shift+I on Windows, or Cmd+Opt+I on Mac to open the DevTools.
-Use Ctrl+Shift+R on Windows, or Cmd+Shift+R on Mac to reload the page and capture the timeline. PROTIP: In order to use the hard reload trick to capture the full trace, you have to load the page first, open Timeline in DevTools, start and stop recording, and then use the shortcuts described above to reload the page. Basically, open DevTools and hit the record button twice before doing a hard reload. Check out DevTools emulation docs for a detailed walkthrough of how to emulate a mobile device.
+Use Ctrl+Shift+R on Windows, or Cmd+Shift+R on Mac to reload the page and capture the timeline.
+PROTIP: In order to use the hard reload trick to capture the full trace, you have to load the page first, open Timeline in DevTools, start and stop recording, and then use the shortcuts described above to reload the page. Basically, open DevTools and hit the record button twice before doing a hard reload. Check out DevTools emulation docs for a detailed walkthrough of how to emulate a mobile device.

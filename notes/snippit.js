@@ -349,6 +349,33 @@ Function.prototype.curry = function() {
   }
 };
 
+// longest common subsequence
+function lcsLength(A, B) {
+  var m = A.length
+  var n = B.length
+  var C = []
+  for (let i = 0; i <= A.length; i++) {
+    C.push([0])
+    for (let j = 0; j < B.length; j++) {
+      C[0].push(0)
+    }
+  }
+
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (A[i] === B[j]) {
+        C[i+1][j+1] = C[i][j] + 1
+      } else {
+        C[i+1][j+1] = Math.max(C[i][j + 1], C[i + 1][j])
+      }
+    }
+  }
+  return C[m][n]
+}
+var A = ['A', 'B', 'C', 'D', 'A', 'B', 'C', 'D']
+var B = ['B', 'C', 'A', 'B', 'F']
+var len = lcsLength(A, B) // 4
+
 // 汉诺塔 hanoi
 var hanoi = function(disc, src, aux, dst) {
   if (disc > 0) {

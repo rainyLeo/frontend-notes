@@ -101,9 +101,9 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 - block 元素中的第一行文本会被当做 block 元素
 - 元素 float, absolute 定位时会脱离文档流, 当没有设置元素的宽度时, 元素的宽度随内容的变化而变化; 会自动以 inline-block 的方式显示, 可以设置 width, height
 - 普通文档流中, block 元素的垂直 margin 会发生 margin 叠加
-- display: none 脱离文档流; visibility: hidden, 仍在文档流中, 占据空间
+- display: none 脱离文档流, 不在渲染树; visibility: hidden, 仍在文档流中, 占据空间
 - outline vs border: 和 border不同, outline 在元素盒子之上, 不会影响盒子的大小和位置. 因此, 它可以用来找 bug, 因为它不会改变页面的布局.
-- float vs absotule: If you want your div to interact and be effected by the other divs on the page, use floats. If you want you div to stay in the same place no matter how the dom changes around it, use absolute positioning; If the elements are meant to interact with each other, use floats. If an element is independent of the content around it, use absolute positioning.
+- float vs absolute: If you want your div to interact and be effected by the other divs on the page, use floats. If you want you div to stay in the same place no matter how the dom changes around it, use absolute positioning; If the elements are meant to interact with each other, use floats. If an element is independent of the content around it, use absolute positioning.
 
 - 空白节点, block 元素内部的 inline 元素的行为表现，就好像 block 元素内部还有一个（更有可能两个-前后）看不见摸不着没有宽度没有实体的空白节点. 对于 inline 元素各种想得通或者想不通的行为表现，基本上都可以用 vertical-align 和 line-height 来解释.
 原因: vertical-align 默认值是 baseline, 也就是基线对齐。而基线是什么，基线就是字母 x 的下边缘, 字符 x 本身是有高度的, 于是，图片下面就留空了, 而 x 文字的高度是由 line-height 决定的
@@ -127,28 +127,26 @@ margin是透明的看不见的, 通常用来分隔开不同元素.
 
 ## 浮动
 
-浮动元素脱离文档流。浮动的框可以向左或向右移动，直到他的外边缘碰到包含框或另一个浮动框的边框为止。
+浮动元素脱离文档流。浮动的框可以向左或向右移动，直到他的外边缘碰到包含框或另一个浮动框的边框为止,
+文字和 inline 元素会包围浮动.
 
 设定希望定位的元素的宽度, 然后 float left/right
 
-1. 浮动元素不在文档流中, 不对包围它们的 block box 产生影响.  解决:
-	- 包围的 block box 设定 overflow: hidden (width 100%)
-	- 在相邻的下个元素上 clear: both (包围的 block 仍为空)
+1. 浮动元素不在文档流中, 不对包围它们的 block box 产生影响, 脱离父元素框
 2. 对相邻的后面元素产生影响
 
 清除浮动的三种方法
 
-1.为父元素添加 overflow:hidden（第一个方法很简单，缺点是不太直观.）
+1.为父元素添加 overflow: hidden（第一个方法很简单，缺点是不太直观.）
 2.同时浮动父元素（比较麻烦，还需 clear 父元素同级元素）
-3.添加非浮动的清除元素，使用伪类很方便，给 父元素的最后添加一个非浮动的子元素，然后 clear 该子元素。
+3.为父元素添加 after 伪类很方便，或父元素的最后添加一个非浮动的子元素添加 clear 。
+4.父元素 display: flow-root
 
 ```css
 .clearfix:after {
-    content: ".";
-    display: block;
-    height:0;
-    visibility: hidden;
-    clear: both;
+  content: "";
+  display: block;
+  clear: both;
 }
 ```
 
@@ -305,7 +303,7 @@ vh
 vmax
 vmin  
 
-在ios设备中，利用 overflow 来模拟滚动会出现卡顿的情况，可以通过设置-webkit-overflow-scrolling: touch 来解决，原因是设置后 ios会为其创建一个 UIScrollView，利用硬件来加速渲染
+在 ios 设备中，利用 overflow 来模拟滚动会出现卡顿的情况，可以通过设置-webkit-overflow-scrolling: touch 来解决，原因是设置后 ios会为其创建一个 UIScrollView，利用硬件来加速渲染
 
 ## 字体
 
@@ -371,5 +369,8 @@ touch-action
 -webkit-appearance
 position: sticky;
 object-fit
+ - how an object (image or video) should fit inside its box.
 background-size: cover
 white-space: nowrap;
+will-change
+clip-path
