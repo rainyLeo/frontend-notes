@@ -3,7 +3,7 @@
 // sum two number without +-*/
 function sum(a, b) {
   while (a !== 0) {
-    [a, b] = [(a & b) << 1, a ^ b];
+    ;[a, b] = [(a & b) << 1, a ^ b]
   }
   return b;
 }
@@ -275,10 +275,9 @@ var color = "#" + ("000000" + Math.random().toString(16).slice(2, 8).toUpperCase
  function shuffle1(arr) {
   var ret = [];
   var length = arr.length;
-  while (length) {
+  while (length--) {
     var index = Math.floor(Math.random() * length);
     [].push.apply(ret, arr.splice(index, 1));
-    length -= 1;
   }
   return ret;
 }
@@ -529,8 +528,8 @@ function find(start, target, history) {
 		} else if (start > target) {
 			return null
 		} else {
-			return find(start + 5, target, '(' + history + ' +5)') ||
-						 find(start * 3, target, '(' + history + ' *3)')
+			return find(start + 5, target, '(' + history + ' + 5)') ||
+						 find(start * 3, target, '(' + history + ' * 3)')
 		}
 
 }
