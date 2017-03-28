@@ -129,6 +129,8 @@ li:nth-child(n), li:nth-of-type(n): li为子元素, 匹配子元素, 不包括�
 
 `write()`, `writeln()`, `open()`, `close()`
 
+`getBoundingClientRect` returns the size of an element and its position relative to the viewport.
+
 
 #Event
 

@@ -40,8 +40,28 @@
 
   doSomething().then(doSomethingElse);
   ```
-  
+
   * 动态规划(LCS, LIS)
 
 - 3.17
   * Vue 按需加载(路由, webpack code split, 异步组件)
+
+- 3.18
+  * 设计模式
+
+- 3.19
+  * webpack
+
+
+- 3.19 ~ 3.24
+ Webpack
+ SSR, Nuxt
+ Vuex, vue-router 源码
+ Test
+ Typescript, flow
+ PWA, Survice Worker
+ Proxy
+ Websocket, socket.io
+ Webassembly
+ restful
+ Rxjs, Observleble

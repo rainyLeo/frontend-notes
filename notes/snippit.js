@@ -686,44 +686,28 @@ function realFunc(){
 window.addEventListener('scroll',throttle(realFunc,500,1000));
 
 
+// 每个200ms执行函数 fn, count 为次数
+function timeChunk(array, fn, count) {
+  var obj, t
+  var len = array.length
 
-
-
-
-// function throttling
-// Using a timer to break up a long-running task
-//
-// var tbody = document.getElementsByTagName("tbody")[0];
-// for (var i = 0; i < 20000; i++) {
-//   var tr = document.createElement("tr");
-//   for (var t = 0; t < 6; t++) {
-//     var td = document.createElement("td");
-//     td.appendChild(document.createTextNode(i + "," + t));
-//     tr.appendChild(td);
-//   }
-//     tbody.appendChild(tr);
-//   }
-var rowCount = 20000;
-var divideInto = 4;
-var chunkSize = rowCount/divideInto;
-var iteration = 0;
-var table = document.getElementsByTagName("tbody")[0];
-
-  setTimeout(function generateRows(){
-    var base = (chunkSize) * iteration;
-    for (var i = 0; i < chunkSize; i++) {
-      var tr = document.createElement("tr");
-      for (var t = 0; t < 6; t++) {
-        var td = document.createElement("td");
-        td.appendChild(document.createTextNode((i + base) + "," + t + "," + iteration));
-        tr.appendChild(td);
-      }
-      table.appendChild(tr);
+  var start = function() {
+    for (var i = 0; i < Math.min(count || 1, array.length); i++) {
+      var obj = array.shift()
+      fn(obj)
     }
-    iteration++;
-    if (iteration < divideInto)
-      setTimeout(generateRows,0);
-},0);
+  }
+
+  return function() {
+    t = setInterval(function() {
+      if (array.length === 0) {
+        return clearInterval(t)
+      }
+      start()
+    }, 200)
+  }
+}
+
 
 // 根据个对象属性对数组进行排序
 function compareFunction(propertyName) {
@@ -736,3 +720,43 @@ function compareFunction(propertyName) {
 var data = [{name: 'leo', age: 24}, {name: 'rainy', age: 23}, {name: 'jade', age: 30}];
 data.sort(compareFunction('name'));
 // data.sort(function(a,b){return a.name < b.name});
+
+// img preload 图片预加载
+var MyImg = (function() {
+  var imgNode = document.createElement('img')
+  document.body.appendChild(imgNode)
+
+  var img = new Image()
+  img.onload = function() {
+    imgNode.src = img.src
+  }
+
+  return {
+    setSrc(src) {
+      imgNode.src = 'loading.gif'
+      img.src = src
+    }
+  }
+})()
+
+MyImg.setSrc('http://abc.jpg')
+
+
+// 每秒输出一个数
+var i = 1
+setTimeout(function log() {
+  console.log(i++)
+  setTimeout(log, 1000)
+}, 1000)
+
+// 方法 2
+function log(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+(async function print() {
+  for (let i = 1;;i++) {
+    console.log(i)
+    await log(1000)
+  }
+})()
