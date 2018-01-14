@@ -34,7 +34,8 @@
 - 弹出层, 轮播
 - js 冒泡
 - tcp udp 区别
-- CommonJS AMD CMD CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像 Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。 但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD CMD 解决方案。
+- CommonJS AMD CMD
+ CommonJS 加载模块是同步的，所以只有加载完成才能执行后面的操作。像 Node.js主要用于服务器的编程，加载的模块文件一般都已经存在本地硬盘，所以加载起来比较快，不用考虑异步加载的方式，所以CommonJS规范比较适用。 但如果是浏览器环境，要从服务器加载模块，这是就必须采用异步模式。所以就有了 AMD CMD 解决方案。
 
 - CommonJS
 
@@ -70,7 +71,8 @@ define(function (require, exports, module) {
 })
 ```
 
-- UMD 因为AMD，CommonJS规范是两种不一致的规范，虽然他们应用的场景也不太一致，但是人们仍然是期望有一种统一的规范来支持这两种规范。于是，UMD（Universal Module Definition，称之为通用模块规范）规范诞生了
+- UMD
+因为AMD，CommonJS规范是两种不一致的规范，虽然他们应用的场景也不太一致，但是人们仍然是期望有一种统一的规范来支持这两种规范。于是，UMD（Universal Module Definition，称之为通用模块规范）规范诞生了
 
   ```javascript
   (function (root, factory) {
@@ -255,15 +257,24 @@ html5提供的 Websocket, ajax 长时间连接, ajax 长轮询
 
 **如何解决跨域问题**
 
-JSONP CORS
+JSONP
 
-服务器端对于CORS的支持，主要就是通过设置Access-Control-Allow-Origin来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问
+利用 script 标签可以跨域的特性, 动态创建 script, 把请求网址放在 script 的 src 属性里, 通过传递callback参数, 请求的结果会作为参数传回, 因为 script里的代码会直接执行的, 所有 callback 函数里可以得到请求结果.
+只支持 GET 方法.
+
+CORS
+
+服务器端对于CORS的支持，主要就是通过设置 Access-Control-Allow-Origin 来进行的。如果浏览器检测到相应的设置，就可以允许Ajax进行跨域的访问
 
 **Ajax**
 
 完整步骤
 
-1.创建XMLHttpRequest对象。 2.设置响应HTTP请求状态变化的函数。 3.创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息，发送HTTP请求。 4.在响应HTTP请求状态变化的函数里，获取异步调用返回的数据。 5.最后，使用JavaScript 实现 DOM 局部刷新。
+1.创建XMLHttpRequest对象。
+2.设置响应HTTP请求状态变化的函数。
+3.创建一个新的HTTP请求,并指定该HTTP请求的方法、URL及验证信息，发送HTTP请求。
+4.在响应HTTP请求状态变化的函数里，获取异步调用返回的数据。
+5.最后，使用JavaScript 实现 DOM 局部刷新。
 
 **HTML5 新特性**
 
@@ -296,7 +307,7 @@ Xss(cross-site scripting)攻击指的是攻击者往Web页面里插入恶意 htm
 
 首先代码里对用户输入的地方和变量都需要仔细检查长度和对 "<", ">", ";", "'"等字符做过滤
 
-其次任何内容写到页面之前都必须加以encode，避免不小心把html tag 弄出来。这一个层面做好，至少可以堵住超过一半的XSS 攻击。
+其次任何内容写到页面之前都必须加以 encode，避免不小心把html tag 弄出来。这一个层面做好，至少可以堵住超过一半的XSS 攻击。
 
 _CSRF_
 
@@ -314,7 +325,7 @@ CSRF（Cross-site request forgery），中文名称：跨站请求伪造
 
 原理就是，要求在访问敏感数据请求时，要求用户浏览器提供不保存在cookie中，并且攻击者无法伪造的数据作为校验，那么攻击者就无法再执行CSRF攻击
 
-1.使用验证码 2.添加 token 并验证
+1.使用验证码 2.添加 token 并验证 3.验证 HTTP Referer 字段
 
 **说说你对MVC和MVVM的理解**
 

@@ -96,6 +96,9 @@ $ man git-<verb>
 	`git remote show [remote-name]`
 	查看某个远程仓库的详细信息
 
+- `git stash`
+
+
 - `git pull [remote]`
  相对于:
  	`git fetch [remote]`
@@ -197,6 +200,16 @@ Undoing
 	* undo Last commit
 	`git revert` (new ID)
 	`git reset` (local only)
+
+    `git reset 4854227e840ee6ceb79b58728a770db58c02f55c`
+    会退到某一个commit, 保留文件修改. 如果加 --hard 则不保存文件修改
+    git reflog: 查看引用log
+
+	* undo Last commit pushed
+	`git push -f origin [last_commit]:[branch-name]`
+  `git reset --hard [last_commit]`
+
+	last commit 通过 git log --oneline 获得
 
 
 Git Conflit

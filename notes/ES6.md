@@ -517,12 +517,13 @@ import { data } from './data.js'
 - the default subclass constructor `automatically` calls the parent constructor(with super), and passes along any arguments.
 - You can only use `super()` in a derived class constructor. If you try to use it in a nonderived class (a class that doesn’t use `extends`) or a function, it will throw an error.
 - You must call `super()` before accessing `this` in the constructor. Because `super()` is responsible for *initializing `this`*,  attempting to access this before calling super() results in an error.
-- The only way to avoid calling super() is to return an object from the class constructor.
+- The only way to avoid calling `super()` is to return an object from the class constructor.
 
 **static**
 
 - `Static` members are not accessible from instances. You must always access static members from the class directly.
 - If a base class has `static` members, those static members are also available on the derived class.
+- ES6只支持静态方法, 没有静态属性, 但可以通过 static get 达到
 
 - `new.target` always points at the constructor that new actually directly invoked, even if the constructor is in a parent class and was delegated to by a super(..) call from a child constructor.
 

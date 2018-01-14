@@ -6,9 +6,62 @@ The `DOMContentLoaded` event is fired when the document has been completely load
 
 `window.onload` vs `document.onload`
 
+## Interface
+
+- `Element`
+The Element interface represents an object of a Document.
+
+Inherits properties from its parent interface, Node, and by extension that
+interface's parent, EventTarget.
+
+This interface describes methods and properties common to all kinds of elements.
+Specific behaviors are described in interfaces which inherit from Element but
+add additional functionality. For example, the HTMLElement interface is the
+base interface for HTML elements, while the SVGElement interface is the basis
+for all SVG elements'
+
+- `HTMLElement`
+The HTMLElement interface represents any HTML element. Some elements directly
+ implement this interface, others implement it via an interface that inherits it.
+
+DOM elements inherit from an `HTMLElement` constructor. By making the HTMLElement prototype accessible, the browsers provide us with the ability to extend any HTML node of our choosing.
+`event.target instanceof HTMLLIElement`
+
+inherits properties from its parent, Element
+
+- `Node`
+A Node is an interface from which a number of DOM types inherit, and allows these various types to be treated (or tested) similarly.
+Inherits properties from its parents EventTarget
+
+- `Document`
+The Document interface represents any web page loaded in the browser and serves as an entry point into the web page's content, which is the DOM tree.
+
+This interface also inherits from the Node and EventTarget interfaces.
+
+
+- `EventTarget`
+EventTarget is an interface implemented by objects that can receive events and may have listeners for them.
+
+Element, document, and window are the most common event targets, but other objects can be event targets too, for example XMLHttpRequest, AudioNode, AudioContext, and others.
+
+Many event targets (including elements, documents, and windows) also support setting event handlers via on... properties and attributes.
+
+- `Event`
+The Event interface represents any event which takes place in the DOM
+Event()
+
+many event interfaces based on the main Event interface, such as: CustomEvent, MouseEvent, DragEvent, TouchEvent,
+FocusEvent, FetchEvent, StorageEvent, MutationEvent, MessageEvent, AnimationEvent...
+
+- `CustomEvent`
+The CustomEvent interface represents events initialized by an application for any purpose.
+
+based on Event interface
+
+vs `Document.createEvent()`: many methods with createEvent are deprecated
+
 ## Property   
 
-- DOM elements inherit from an HTMLElement constructor. By making the HTMLElement prototype accessible, the browsers provide us with the ability to extend any HTML node of our choosing.
 
 `Node.nodeName`: UpperCase, similar to `tagName`, nodeName will return #text for text nodes while tagName will return undefined.   
 `Node.nodeValue`: returns or sets the value of the current node
@@ -55,7 +108,8 @@ The `DOMContentLoaded` event is fired when the document has been completely load
 
 `selectedIndex`
 
-`activeElement`   
+`activeElement`
+
 
 ## 笔记
 
@@ -75,6 +129,9 @@ textContent vs innerText:
 
 textContent vs innerHTML
 innerHTML 返回 HTML. 当需要在元素内容取出或写入 text 时, 最好用 textContent, 因为 text 不会解析成 HTML, 可能会有更好的性能, 而且只可以避开 XSS 攻击
+
+innerHTML: html string -> dom element
+outerHTML: dom element -> html string
 
 ## Methods
 
@@ -130,6 +187,8 @@ li:nth-child(n), li:nth-of-type(n): li为子元素, 匹配子元素, 不包括�
 `write()`, `writeln()`, `open()`, `close()`
 
 `getBoundingClientRect` returns the size of an element and its position relative to the viewport.
+
+`DOMParser` DOMParser can parse XML or HTML source stored in a string into a DOM Document.
 
 
 #Event
@@ -191,32 +250,40 @@ li:nth-child(n), li:nth-of-type(n): li为子元素, 匹配子元素, 不包括�
 `event.currentTarget` always === this
 
  元素的属性
-`event.target.scrollLeft`,  
-`event.target.scrollTop`, 元素滚动条顶部距离浏览器顶部的距离, 可以读取或设置
-`event.target.offsetLeft`  
-`event.target.offsetTop` 元素上方距离页面顶部距离, 只读
 `event.target.clientTop` 元素上边框的宽度
 `event.target.clientLeft`
+`event.target.offsetLeft`  
+`event.target.offsetTop` 元素上方距离页面顶部距离, 只读
+`event.target.scrollLeft`,  
+`event.target.scrollTop`, 元素滚动条顶部距离浏览器顶部的距离, 可以读取或设置
 
-`element.offsetHeight` 元素可见高度, 包括 padding, border, scrollbar, 只读
-`element.offsetWidth`
 `element.clientHeight` 元素可见高度, 包括 padding, 只读
 `element.clientWidth`
+`element.offsetHeight` 元素可见高度, 包括 padding, border, scrollbar, 只读
+`element.offsetWidth`
+`element.offsetParent` read-only property returns a reference to the object which is the closest positioned containing element.
 `element.scrollHeight` 元素内容高度, 包括 overflow 的不可见内容, 只读.
 `element.scrollWidth`
 
+是否有确定的大小? offsetWidth 是否一定大于等于 clientWidth?
+
+
 `window.innerHeight` Height (in pixels) of the browser window viewport including, if rendered, the horizontal scrollbar.
-`window.innerWidth`
+`window.innerWidth`  viewport including, if rendered, the vertical scrollbar
 `window.outerHeight` the height in pixels of the whole browser window, 包含浏览器的工具栏, 标签栏
-`window.outerWidth` 多个滚动条
+`window.outerWidth`  width of the whole browser window including sidebar (if expanded), window chrome and window resizing borders/handles
 
 viewport:
+`html == document.documentElement`
 `var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);`
 `var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);`
-document.body.clientWidth == window.innerWidth == document.documentElement.clientWidth
+`document.body.clientWidth == window.innerWidth == document.documentElement.clientWidth`
 
-chrome 右上方显示的是 window.outerWidth * window.outerHeight
+chrome 右上方显示的是 `window.outerWidth * window.outerHeight`
 
 滚动到底部: document.body.scrollTop = document.body.scrollHeight
 
 document.onscroll, document.body.scrollTop
+
+
+Chrome renders paddingBottom to the bottom of the scroll content, while other browsers don't

@@ -2,11 +2,11 @@
 
 
 1. **cd ：更改路径(change directory)**  
-`cd` home directory 
+`cd` home directory
 ` .`  `./`  当前目录    
 `..`  `../`上级目录  
 `-`  前一个目录  
-`\~`:   home directory 
+`\~`:   home directory
 
 2. **pwd：输出当前路径**  
 `pwd`：print working dirctory  
@@ -25,11 +25,11 @@
 5. **mkdir：新建目录**  
 `mkdir animals`  新建了一个名为animals的目录  
 `mkdir cat dog pig` 新建多个目录  
-`mkdir -p [dir]/[dir]` create nested directories 
+`mkdir -p [dir]/[dir]` create nested directories
 
 6. **touch：新建文件**  
 `touch [-acdmt] 文件`  新建  
- 
+
 和ls、cd一样，用touch新建文件时可以指定路径  
 `touch desktop/file/data.txt`  
 
@@ -43,7 +43,7 @@
 `-p` 连同文件的属性一起复制，而非使用默认属性  
 `-u` 若destination比source旧才更新destination  
 `-s` 复制成为符号链接文件，即快捷方式  
- 
+
 `-r` 递归复制，用于目录的复制 
 
 `mv [-fiu] source destination` 移动文件与目录，或更名  
@@ -54,17 +54,18 @@
 `-i` 互动模式，在删除前会询问用户是否操作  
 `-r` 递归删除，常用在目录的删除 危险的参数！
 
-  
+
 8. **其它**  
- 
+
+`ln -s source_file target_file` 建立软链接
  `cat` `tac` `nl` `more` `less` `head` `tail` `od` 查看文件内容  
  `umask -S` 文件默认权限  
- 
+
 `rename` 更改大量文件的文件名  
 `chattr` `lsattr` 文件隐藏属性  
 `file` 查看文件类型  
 `which -a command` 查询可执行命令  
-`whereis [-bmsu] 文件或目录名` `locate [-ir] keyword` `find` 查找文件 
+`whereis [-bmsu] 文件或目录名` `locate [-ir] keyword` `find` 查找文件
 
 `date`  date +%Y/%m/%d 时间  
 `cal` cal 10 2016 日历  
@@ -76,27 +77,27 @@
 `nano` `vim` 文件编辑或新建  
 `who` 查看在线  
 `netstat -a` 查看网络联机状态  
-`ps -aux`  
+`ps -aux | grep redis`  查看 redis 进程
 `shutdown`, `reboot`, `halt`, `powerff` 关机，重启  
 `sync` 数据同步写入磁盘  
 `chmod`, `chown`, `chgrp` 改变文件权限，所有者，用户组  
 `echo $PATH` 查询环境路径    
 `PATH="$PATH":/usr/local/bin` 把／usr/loacal/bin加入环境路径  
 `top` display active processes.Press q to quit
-`nano [file]` `vim [file]` open file/new file 
-`clear` clear screen 
+`nano [file]` `vim [file]` open file/new file
+`clear` clear screen
 `history n` command history
-`ctrl+r` interactively search through previously typed command 
+`ctrl+r` interactively search through previously typed command
 `![value]` execute the last command typed that starts with 'value'
 `!!` execute the last command typed
 `pbcopy < [file]` copy file contents to clipboard
 `pbpaste` paste clipboard contents
 `pbpaste > [file]` paste clipboard contents into files
-`[command] < [file]` tell command to read content from a file 
+`[command] < [file]` tell command to read content from a file
 `[command] > [file]` push output to file, keep in mind it will get overwritten
-`[command] >> [file]` append output to existing file 
+`[command] >> [file]` append output to existing file
 `[command] -h` offer help
-`man [command]` show the help manual for [command] 
+`man [command]` show the help manual for [command]
 
 9. ** Search **
 `find [dir] -name [search_pattern]` search for files, e.g. `find /Users -name "file.text"`
@@ -113,26 +114,19 @@
 `ctrl+l` clear the screen
 `cmd+k` clear the screen(actually clear)
 `ctrl+q` clear current line
-`ctrl+k` cut to end of line 
+`ctrl+k` cut to end of line
 `ctrl+u` cut to beginning of line
 `ctrl+w` cut one word backwards
-`ctrl+y` paste whatever was cut by last cut command 
+`ctrl+y` paste whatever was cut by last cut command
 `ctrl+h` backspace
-`ctrl+c` kill whatever you are running 
+`ctrl+c` kill whatever you are running
 `ctrl+d` exit the current shell when no process is running, or send EOF to the running process
 `ctrl+z` put whatever you are running into a suspended background process
-`ctrl+_` undo the last command 
+`ctrl+_` undo the last command
 `ctrl+t` swap the last two characters before the cursor
 `ctrl+f` move cursor one character forward
-`ctrl+b` move cursor one character backward 
+`ctrl+b` move cursor one character backward
 `esc+f` move cursor one word forward
 `esc+b` move cursor one word backward
 `est+t` swap the last two words before the cursor
 `tab` auto-complete files and folder names
-
-
-
-
-
-
-

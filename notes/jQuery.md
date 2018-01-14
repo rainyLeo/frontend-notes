@@ -1,12 +1,12 @@
 ## 认识 jQuery
 
-$() 返回一个新的jQuery对象实例, 放在一个数组里面,一个元素也在数组里面.
+$() 返回一个新的jQuery对象实例, 放在一个数组里面, 一个元素也在数组里面.
 $(document).ready(), 在DOM加载完毕后调用, 而不必等到页面中图片加载, 类似`DOMContentLoaded`
 
 **jQuery 对象和 DOM 对象**
 jQuery 对象才能使用 jQuery 方法, DOM 对象才能使用 DOM 方法;
 
-```js 
+```js
 var $cr = $('#cr'); // jQuery 对象
 var cr = $cr[0]; // DOM 对象
 
@@ -23,8 +23,8 @@ attr(), html(), text(), height(), width(), val(), css()
 
 ##jQuery对象方法
 
-### 遍历n 
-`.each()` 
+### 遍历n
+`.each()`
 `.map()`
 `.grep()`
 `.eq()` 将匹配元素集合缩减为集合中指定位置的元素
@@ -64,15 +64,15 @@ Javascript数组从0开始, `:eq(1)`取得是集合中第二个元素, 而CSS是
 `.hasClass(selector)` 检测匹配元素集中任意元素含有的指定类样式, 只要其中一个元素含有就返回true
 
 2. --HTML属性操作
-`.attr(name, value)` 获取匹配元素集合第一个元素的HTML属性值, 或未匹配元素集合设置一个或多个HTML属性 
+`.attr(name, value)` 获取匹配元素集合第一个元素的HTML属性值, 或未匹配元素集合设置一个或多个HTML属性
 `.removeAttr(name)` 从匹配元素集中的每个元素上移除一个或多个HTML属性, 多个HTML属性直接用空格隔开
 
-3. --DOM属性操作 
-`.prop(name, value)` 获取匹配元素集合第一个元素的DOM属性值, 或为匹配元素集合设置一个或多个DOM属性 
+3. --DOM属性操作
+`.prop(name, value)` 获取匹配元素集合第一个元素的DOM属性值, 或为匹配元素集合设置一个或多个DOM属性
 `.removeProp(name)` 从匹配元素集中的每个元素上移除一个DOM属性
 
 
-`.prop()`与`.attr()` 的区别: 1)优先使用`.prop()`, 因为它总是返回DOM元素最新的状态. 2)涉及自定义HTML属性时使用`.attr()`; 
+`.prop()`与`.attr()` 的区别: 1)优先使用`.prop()`, 因为它总是返回DOM元素最新的状态. 2)涉及自定义HTML属性时使用`.attr()`;
  1.具有 true 和 false 两个属性的属性，如 `checked`, `selected` 或者 `disabled` 使用 prop(), `$("#checkBox").prop("checked", false)`
 
 An attribute is only ever a string, no other type.
@@ -125,7 +125,7 @@ $('input').attr('checked'); // returns "checked"
 `.prev()`
 `.prevAll()`
 `.siblings()` 获取匹配元素集合中每个元素的所有兄弟元素,可以通过一个选择器表达式过滤找到的元素
-`.parent()` 
+`.parent()`
 `.parents()`
 `.children()`
 `.contents()`
@@ -219,11 +219,11 @@ jQuery(document).ready(function($){
 (function($) {
   $.sum = function(array) {
     var total = 0;
-    
+
     $.each(array, function(index, value) {
       value = $.trim(value);
       value = parseFloat(value) || 0;
-      
+
       total += value;
     });
     return total    
@@ -314,7 +314,7 @@ jQuery = function(selector, context) {
 
 //
 init = jQuery.fn.init = function(selector, context, root) {
-  
+
 }
 
 ```
@@ -334,7 +334,7 @@ init = jQuery.fn.init = function(selector, context, root) {
 
 
 `jQuery.extend = jQuery.fn.extend = function() {}`
-  
+
 `jQuery.extend()`, `jQuery.fn.extend()` 用于合并两个或多个对象的属性到第一个对象,它们的语法如下:
 
 `jQuery.extend([deep], target, [object1...])`
@@ -372,28 +372,27 @@ $.each() 和 $(selector).each()的不同:
 // $.each()
 jQuery.extend({
   each: function functionName() {
-    
+
   }
 });
 // 等价于
 jQuery.each = function() {
-  
+
 }
 
 // $(selector).each
 jQuery.fn.extend({
   each: function() {
-    
+
   }
 });
 
 // 等价于
 jQuery.prototype.each = function() {
-  
+
 };
 
 ```
 
 2. $.each()可用于任意数字, 对象, 类数组;  
  $(selector).each()只用于jQuery对象
-
