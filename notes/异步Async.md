@@ -170,3 +170,7 @@ The `async` keyword before function indicates that the function is meant to run 
 When you `await` a promise, the function is paused in a non-blocking way until the promise settles. If the promise fulfills, you get the value back. If the promise rejects, the rejected value is thrown. Anything you `await` is passed through `Promise.resolve()`, so you can safely await non-native promises.
 
 Just like the implementation of `run()` in the preceding section,` await` will throw an error if the promise is rejected and otherwise return the value from the promise.
+
+async 的返回值, await 后面函数f()的返回值都是promise
+1. f() resolve,  await f()返回 resolve 的值, async 返回 promise
+2. f() reject, await f() 没有返回值, async 返回该 reject promise

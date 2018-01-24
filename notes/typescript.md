@@ -1,4 +1,7 @@
-**Types**
+# Typescript
+
+## Types
+
 a type is introduced with:
 
 - A type alias declaration (`type sn = number | string;`)
@@ -9,7 +12,8 @@ a type is introduced with:
 
 Each of these declaration forms creates a new type name.
 
-**Values**
+## Values
+
 Values are runtime names that we can reference in expressions. For example `let x = 5`; creates a value called `x`.
 
 Again, being explicit, the following things create values:
@@ -21,12 +25,12 @@ Again, being explicit, the following things create values:
 - An `import` declaration which refers to a value
 - A `function` declaration
 
-**Namespaces**
+## Namespaces
+
 Types can exist in namespaces. For example, if we have the declaration `let x: A.B.C`, we say that the type `C` comes from the `A.B` namespace.
 This distinction is subtle and important – here, `A.B` is not necessarily a type or a value.
 
-
-**Interface**
+## Interface
 
 ```ts
 interface LabelledValue {
@@ -94,6 +98,7 @@ let digital = createClock(DigitalClock, 12, 17);
 ```
 
 - Extending Interfaces
+
 ```ts
 interface Shape {
     color: string;
@@ -112,7 +117,9 @@ square.color = "blue";
 square.sideLength = 10;
 square.penWidth = 5.0;
 ```
+
 - Hybrid Types
+
 interfaces can describe the rich types present in real world JavaScript. Because of JavaScript’s dynamic and flexible nature, you may occasionally encounter an object that works as a combination of some of the types described above.
 One such example is an object that acts as both a function and an object, with additional properties:
 
@@ -137,6 +144,7 @@ c.interval = 5.0;
 ```
 
 - Interfaces Extending Classes
+
 When an interface type extends a class type it inherits the members of the class but not their implementations. It is as if the interface had declared all of the members of the class without providing an implementation. Interfaces inherit even the private and protected members of a base class. This means that when you create an interface that extends a class with private or protected members, that interface type can only be implemented by that class or a subclass of it.
 
 ```ts
@@ -157,11 +165,14 @@ class TextBox extends Control {
 }
 ```
 
-**Class**
+## Class
+
 - Public, private, and protected modifiers
+
 `Public` by default
 When a member is marked `private`, it cannot be accessed from outside of its containing class(实例不能用)
 The `protected` modifier acts much like the private modifier with the exception that members declared protected can also be accessed by instances of deriving classes(实例不能用, 子类可以用, 子类实例不能用)
+
 ```ts
 class Person {
     private department: string;
@@ -199,6 +210,7 @@ class Octopus {
 - Static Properties
 
 - Abstract Classes
+
 Abstract classes are base classes from which other classes may be derived. They may not be instantiated directly. Unlike an interface, an abstract class may contain implementation details for its members. The abstract keyword is used to define abstract classes as well as abstract methods within an abstract class.
 
 ```ts
@@ -236,6 +248,7 @@ department.generateReports(); // error: method doesn't exist on declared abstrac
 ```
 
 - Advanced Techniques
+
 When you declare a class in TypeScript, you are actually creating multiple declarations at the same time. The first is the type of the *instance* of the class.
 We’re also creating another value that we call the *constructor function*. 
 
@@ -268,7 +281,7 @@ console.log(greeter2.greet());
 
 - Using a class as an interface
 
-**Functions**
+## Functions
 
 ```ts
 interface Card {
@@ -327,7 +340,7 @@ let pickedCard2 = pickCard(15);
 alert("card: " + pickedCard2.card + " of " + pickedCard2.suit);
 ```
 
-**Generics**
+## Generics
 
 In languages like C# and Java, one of the main tools in the toolbox for creating reusable components is generics, that is, being able to create a component that can work over a variety of types rather than a single one. This allows users to consume these components and use their own types.
 
@@ -389,6 +402,7 @@ function loggingIdentity<T extends Lengthwise>(arg: T): T {
 ```
 
 - Using Type Parameters in Generic Constraints
+
 You can declare a type parameter that is constrained by another type parameter.
 
 ```ts
@@ -442,7 +456,7 @@ createInstance(Bee).keeper.hasMask;   // typechecks!
 
 ```
 
-**enum**
+## enum
 
 ```ts
 enum Response {
@@ -474,7 +488,7 @@ enum FileAccess {
 }
 ```
 
-**Type Compatibility**
+## Type Compatibility
 
 ```ts
 interface Named {
@@ -494,6 +508,7 @@ p = new Person();
 TypeScript’s type system allows certain operations that can’t be known at compile-time to be safe. When a type system has this property, it is said to not be “sound”. The places where TypeScript allows unsound behavior were carefully considered, and throughout this document we’ll explain where these happen and the motivating scenarios behind them.
 
 - Starting out
+
 The basic rule for TypeScript’s structural type system is that x is compatible with y if y has at least the same members as x. For example:
 
 ```ts
@@ -516,16 +531,18 @@ x = y; // Error
 ```
 
 - Classes
+
 Classes work similarly to object literal types and interfaces with one exception: they have both a static and an instance type. When comparing two objects of a class type, only members of the instance are compared. Static members and constructors do not affect compatibility.
 
 - Generics
+
 Because TypeScript is a structural type system, type parameters only affect the resulting type when consumed as part of the type of a member. 
 
 - Subtype vs Assignment
+
 So far, we’ve used ‘compatible’, which is not a term defined in the language spec. In TypeScript, there are two kinds of compatibility: subtype and assignment. These differ only in that assignment extends subtype compatibility with rules to allow assignment to and from `any` and to and from enum with corresponding numeric values.
 
-
-**Advanced Types*
+## Advanced Types
 
 - Intersection Types
 
@@ -566,7 +583,7 @@ function padLeft(value: string, padding: string | number) {
     // ...
 }
 
-let indentedString = padLeft("Hello world", 'abc'); 
+let indentedString = padLeft("Hello world", 'abc');
 
 // If we have a value that has a union type, we can only access members that are common to all types in the union.
 interface Bird {
@@ -599,6 +616,7 @@ if ((<Fish>pet).swim) {
 ```
 
 - Type Guards and Differentiating Types
+
 A type guard is some expression that performs a runtime check that guarantees the type in some scope. To define a type guard, we simply need to define a function whose return type is a *type predicate*:
 
 ```ts
@@ -606,6 +624,7 @@ function isFish(pet: Fish | Bird): pet is Fish {
     return (<Fish>pet).swim !== undefined;
 }
 ```
+
 `pet is Fish` is our type predicate in this example. A predicate takes the form `parameterName is Type`, where `parameterName` must be the name of a parameter from the current function signature.
 
 Any time `isFish` is called with some variable, TypeScript will narrow that variable to that specific type if the original type is compatible.
@@ -625,6 +644,7 @@ else {
 - `instanceof` type guards
 
 - Nullable types
+
 The `--strictNullChecks` flag fixes this: when you declare a variable, it doesn’t automatically include null or undefined.
 
 ```ts
@@ -638,10 +658,10 @@ sn = undefined; // error, 'undefined' is not assignable to 'string | null'
 
 With --`strictNullChecks`, an optional parameter automatically adds `| undefined`:
 
-
 `identifier!` removes `null` and `undefined` from the type of `identifier`:
 
 - Type Aliases
+
 Type aliases create a new name for a type. Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types that you’d otherwise have to write by hand.
 
 ```ts
@@ -683,6 +703,7 @@ type Yikes = Array<Yikes>; // error
 ```
 
 - Interfaces vs. Type Aliases
+
 One difference is that interfaces create a new name that is used everywhere. Type aliases don’t create a new name
 A second more important difference is that type aliases cannot be extended or implemented from (nor can they extend/implement other types).
 
@@ -737,6 +758,7 @@ function getProperty<T, K extends keyof T>(o: T, name: K): T[K] {
     return o[name]; // o[name] is of type T[K]
 }
 ```
+
 `keyof T`, the index type query operator.
 `T[K]`, the indexed access operator
 

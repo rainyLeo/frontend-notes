@@ -122,7 +122,6 @@ mapState, mapGetters 写在 `computed` 里, mapMutations, mapActions 写在 `met
 
 ## 还不熟悉
 mixin, extends
-自定义事件, 自定义指令
 slot, keep-alive
 key, ref
 render
