@@ -54,16 +54,15 @@
 `-i` 互动模式，在删除前会询问用户是否操作  
 `-r` 递归删除，常用在目录的删除 危险的参数！
 
-
 8. **其它**  
 
 `ln -s source_file target_file` 建立软链接
  `cat` `tac` `nl` `more` `less` `head` `tail` `od` 查看文件内容  
  `umask -S` 文件默认权限  
-
+`export` set environment variables
 `rename` 更改大量文件的文件名  
 `chattr` `lsattr` 文件隐藏属性  
-`file` 查看文件类型  
+`file` 查看文件类型
 `which -a command` 查询可执行命令  
 `whereis [-bmsu] 文件或目录名` `locate [-ir] keyword` `find` 查找文件
 
@@ -99,13 +98,11 @@
 `[command] -h` offer help
 `man [command]` show the help manual for [command]
 
-9. ** Search **
+9. **Search**
 `find [dir] -name [search_pattern]` search for files, e.g. `find /Users -name "file.text"`
 `grep [search_pattern] [file]` search for all lines that contain the pattern, e.g. `grep "Tom" file.text`
 `grep -r [search_pattern] [file]` Recursively search for all lines that do not contain the pattern
 `grep -v [search_pattern] [file]` Search for all lines that do NOT contain the pattern
-
-
 
 ### Terminal Mac  
 

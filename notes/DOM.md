@@ -8,6 +8,8 @@ The `DOMContentLoaded` event is fired when the document has been completely load
 
 ## Interface
 
+EventTarget <- Node <- Element <- HTMLElement <- HTMLImageElement
+
 - `Element`
 The Element interface represents an object of a Document.
 
@@ -250,12 +252,13 @@ li:nth-child(n), li:nth-of-type(n): li为子元素, 匹配子元素, 不包括�
 `event.currentTarget` always === this
 
  元素的属性
-`event.target.clientTop` 元素上边框的宽度
-`event.target.clientLeft`
+`event.target.clientTop` 元素上边框的宽度(`getComputedStyle().borderTopWidth`)
+`event.target.clientLeft` 元素左边框的宽度
 `event.target.offsetLeft`  
-`event.target.offsetTop` 元素上方距离页面顶部距离, 只读
+`event.target.offsetTop` 元素上方距离包含块 padding box 顶部距离, 只读
 `event.target.scrollLeft`,  
 `event.target.scrollTop`, 元素滚动条顶部距离浏览器顶部的距离, 可以读取或设置
+`getBoundingClientRect().top` 元素上方距离 viewport 顶部距离
 
 `element.clientHeight` 元素可见高度, 包括 padding, 只读
 `element.clientWidth`
@@ -264,20 +267,24 @@ li:nth-child(n), li:nth-of-type(n): li为子元素, 匹配子元素, 不包括�
 `element.offsetParent` read-only property returns a reference to the object which is the closest positioned containing element.
 `element.scrollHeight` 元素内容高度, 包括 overflow 的不可见内容, 只读.
 `element.scrollWidth`
+`getBoundingClientRect().width` 大多数情况下等于 offsetWidth, 除了在 transform 时等于 rendering width, 而 offsetWidth 等于 layout width
 
-是否有确定的大小? offsetWidth 是否一定大于等于 clientWidth?
 
+`window.innerHeight` css viewport(@media) 高度, 包括 scrollbar.
+`window.innerWidth`  css viewport(@media) 宽度, 包括 scrollbar
+和 scale zoom 有关
+undefined in IE8-
 
-`window.innerHeight` Height (in pixels) of the browser window viewport including, if rendered, the horizontal scrollbar.
-`window.innerWidth`  viewport including, if rendered, the vertical scrollbar
+`document.body.clientWidth == document.documentElement.clientWidth`
+CSS viewport 减去 scrollbar width
+jQuery(window).width()
+
 `window.outerHeight` the height in pixels of the whole browser window, 包含浏览器的工具栏, 标签栏
 `window.outerWidth`  width of the whole browser window including sidebar (if expanded), window chrome and window resizing borders/handles
 
-viewport:
-`html == document.documentElement`
+跨浏览器 viewport:
 `var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);`
 `var h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);`
-`document.body.clientWidth == window.innerWidth == document.documentElement.clientWidth`
 
 chrome 右上方显示的是 `window.outerWidth * window.outerHeight`
 
@@ -287,3 +294,14 @@ document.onscroll, document.body.scrollTop
 
 
 Chrome renders paddingBottom to the bottom of the scroll content, while other browsers don't
+
+
+## HTMLImageElement
+
+- 属性
+src
+srcset
+height:  rendered height of the image in CSS pixels
+width
+naturalHeight : intrinsic height of the image in CSS pixels, or 0.
+naturalWidth 

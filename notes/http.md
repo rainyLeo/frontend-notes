@@ -1,19 +1,16 @@
-## HTTP请求
+## HTTP
 
-** URL **
+**URL**
 
 -URLs specify protocol, server, and local resource
 - syntax : <scheme>://<user>:<password>@<host>:<port>/<path>;<params>?<query>#<frag>
-- Say you want to fetch the URL http://www.joes-hardware.com/seasonal/index-fall.html:
+Say you want to fetch the URL http://www.joes-hardware.com/seasonal/index-fall.html:
  1. The first part of theURL(http) is the URL scheme. The scheme tells a web client
-how to access the resource. In this case, the URL says to use the HTTP protocol.
  2. The second part of the URL (www.joes-hardware.com) is the server location.
-This tells the web client where the resource is hosted, the host name can be provided as a hostname, as above (“www.joes-hardware.com”) or as an IP address. The port component identifies the network port on which the server is listening. For HTTP, which uses the underlying TCP protocol, the default port is 80.
  3. The third part of the URL (/seasonal/index-fall.html) is the resource path. The
-path tells what particular local resource on the server is being requested.
  4. parameters, query strings, fragments
 
-- Encoding Mechanisms: To get around the limitations of a safe character set representation, an encoding scheme was devised to represent characters in a URL that are not safe. The encoding simply represents the unsafe character by an “escape” notation, consisting of a per- cent sign (%) followed by two hexadecimal digits that represent the ASCII code of the character.
+- Encoding Mechanisms: To get around the limitations of a safe character set representation, an encoding scheme was devised to represent characters in a URL that are not safe. The encoding simply represents the unsafe character by an “escape” notation, consisting of a percent sign (%) followed by two hexadecimal digits that represent the ASCII code of the character.
  - % Reserved escape token for encoded characters
  - / Reserved for delimiting splitting up path segments in the path component
  - . Reserved in the path component
@@ -28,29 +25,34 @@ path tells what particular local resource on the server is being requested.
  - <>" Unsafe; should be encoded because these characters often have meaning outside the scope of the URL, such as delimiting the URL itself in a document (e.g., “http://www.joes-hardware.com”)
  
  
-- Schemes
- - http: The Hypertext Transfer Protocol scheme conforms to the general URL format, except that there is no username or password. The port defaults to 80 if omitted. form: http://<host>:<port>/<path>?<query>#<frag>
- - https: http with (SSL), which provides end-to-end encryption of HTTP connections. Its syntax is identical to that of HTTP, with a default port of 443. form: https://<host>:<port>/<path>?<query>#<frag>
- - mailto: Mailto URLs refer to email addresses. Because email behaves differently from other schemes (it does not refer to objects that can be accessed directly), the format of a mailto URL differs from that of the standard URL. The syn- tax for Internet email addresses is documented in Internet RFC 822. form: mailto:joe@joes-hardware.com
- - ftp: File Transfer Protocol URLs can be used to download and upload files on an FTP server and to obtain listings of the contents of a directory structure on an FTP server. form: ftp://<user>:<password>@<host>:<port>/<path>;<params>
- - file: The file scheme denotes files directly accessible on a given host machine (by local disk, a network filesystem, or some other file-sharing system). The fields follow the general form. If the host is omitted, it defaults to the local host from which the URL is being used. form: file://<host>/<path>
- - telnet: The telnet scheme is used to access interactive services. It does not represent an object per se, but an interactive application (resource) accessible via the telnet protocol. form: telnet://<user>:<password>@<host>:<port>/
- 
+**Schemes**
 
+ - http
+ The Hypertext Transfer Protocol scheme conforms to the general URL format, except that there is no username or password. The port defaults to 80 if omitted. form: http://<host>:<port>/<path>?<query>#<frag>
+ - https
+  http with (SSL), which provides end-to-end encryption of HTTP connections. Its syntax is identical to that of HTTP, with a default port of 443. form: https://<host>:<port>/<path>?<query>#<frag>
+ - mailto
+  Mailto URLs refer to email addresses. Because email behaves differently from other schemes (it does not refer to objects that can be accessed directly), the format of a mailto URL differs from that of the standard URL. The syn- tax for Internet email addresses is documented in Internet RFC 822. form: mailto:joe@joes-hardware.com
+ - ftp
+  File Transfer Protocol URLs can be used to download and upload files on an FTP server and to obtain listings of the contents of a directory structure on an FTP server. form: ftp://<user>:<password>@<host>:<port>/<path>;<params>
+ - file
+  The file scheme denotes files directly accessible on a given host machine (by local disk, a network filesystem, or some other file-sharing system). The fields follow the general form. If the host is omitted, it defaults to the local host from which the URL is being used. form: file://<host>/<path>
+ - telnet
+  The telnet scheme is used to access interactive services. It does not represent an object per se, but an interactive application (resource) accessible via the telnet protocol. form: telnet://<user>:<password>@<host>:<port>/
 
+**Messages**
 
-** Messages **
+ HTTP messages sent from web clients to web servers are called request messages. 
+ Messages from servers to clients are called response messages.
+ HTTP messages are the blocks of data sent between HTTP applications. These blocks of data begin with some text meta-information describing the message contents and meaning, followed by optional data. These messages flow between clients, servers, and proxies
 
-- HTTP messages sent from web clients to web servers are called request messages. Messages from servers to clients are called response messages.
-- HTTP messages are the blocks of data sent between HTTP applications. These blocks of data begin with some text meta-information describing the message con- tents and meaning, followed by optional data. These messages flow between clients, servers, and proxies
-
-- HTTP messages consist of three parts:
+ HTTP messages consist of three parts:
  1. Start line
-  - The first line of the message is the start line, indicating what to do for a request or what happened for a response. describing the message
+ The first line of the message is the start line, indicating what to do for a request or what happened for a response. describing the message
  2. Header fields
-  - containing attributes. Zero or more header fields follow the start line. Each header field consists of a name and a value, separated by a colon (:) for easy parsing. The headers end with a blank line. 
+ containing attributes. Zero or more header fields follow the start line. Each header field consists of a name and a value, separated by a colon (:) for easy parsing. The headers end with a blank line. 
  3. Body 
-  - containing data. After the blank line is an optional message body containing any kind of data. Request bodies carry data to the web server; response bodies carry data back to the client. Unlike the start lines and headers, which are textual and structured, the body can contain arbitrary binary data (e.g., images, videos, audio tracks, software applications). Of course, the body can also contain text and can be empty.
+ containing data. After the blank line is an optional message body containing any kind of data. Request bodies carry data to the web server; response bodies carry data back to the client. Unlike the start lines and headers, which are textual and structured, the body can contain arbitrary binary data (e.g., images, videos, audio tracks, software applications). Of course, the body can also contain text and can be empty.
 
 **语法**
 
@@ -113,27 +115,25 @@ Set-cookie
 
 **方法**
 
-- GET get a document from the server; Send named resource from the server to the client
-- PUT Store data from client into a named server resource. (message body)
-- DELETE Delete the named resource from a server.
-- TRACE Trace the message through proxy servers to the server.
-- POST Send client data into a server gateway application for processing (message body)
-- HEAD Send just the HTTP headers from the response for the named resource.
+- GET 
+get a document from the server; Send named resource from the server to the client
+- PUT 
+Store data from client into a named server resource. (message body)
+- DELETE
+ Delete the named resource from a server.
+- TRACE 
+Trace the message through proxy servers to the server.
+- POST 
+Send client data into a server gateway application for processing (message body)
+- HEAD 
+Send just the HTTP headers from the response for the named resource.
 
 **状态码**
 
-- Every HTTP response message comes back with a status code. The status code is a three-digit numeric code that tells the client if the request succeeded, or if other actions are required.
-- Status codes between 200 and 299 represent success. Codes between 300 and 399 indicate that the resource has been moved. Codes between 400 and 499 mean that the client did something wrong in the request. Codes between 500 and 599 mean something went awry on the server.
-
-*Headers*
-- Headers example 
- * Content-length: 1450 			 The entity body contains 15,040 bytes of data 
- * Content-type: image/gif 		 The entity body is a GIF image 
- * Accept:image/gif,text/html  The client accepts GIF and HTML
-
-*Entity Bodies*
-
-
+200 - 299: success. 
+300 - 399: resource has been moved. 
+400 - 499: client did something wrong in the request. 
+500 - 599: something went awry on the server.
 
 *connection management*
 
@@ -147,34 +147,38 @@ Set-cookie
 (g) The connection is closed, and the browser displays the document.
 
 
-TCP/IP
-- HTTP is an application layer protocol. HTTP doesn’t worry about the nitty-gritty details of network communication; instead, it leaves the details of networking to TCP/IP, the popular reliable Internet transport protocol.
-- TCP provides:
+- TCP/IP
+ HTTP is an application layer protocol. HTTP doesn’t worry about the nitty-gritty details of network communication; instead, it leaves the details of networking to TCP/IP, the popular reliable Internet transport protocol.
+ TCP provides:
  * Error-free data transportation
  * In-order delivery (data will always arrive in the order in which it was sent)
  * Unsegmented data stream (can dribble out data in any size at any time)
-- In networking terms, the HTTP protocol is layered over TCP. HTTP uses TCP to transport its message data. Likewise, TCP is layered over IP
 
-Connections, IP Addresses, and Port Numbers
-- Before an HTTP client can send a message to a server, it needs to establish a TCP/IP connection between the client and server using Internet protocol (IP) addresses and port numbers.
-- In TCP, you need the IP address of the server computer and the TCP port number associated with the specific software program running on the server.
--  but how do you get the IP address and port number of the HTTP server in the first place? Why, the URL
--  Hostnames can easily be converted into IP addresses through a facility called the Domain Name Service (DNS)
-- When the port number is missing from an HTTP URL, you can assume the default value of port 80.
-- With the IP address and port number, a client can easily communicate via TCP/IP.
+ In networking terms, the HTTP protocol is layered over TCP. HTTP uses TCP to transport its message data. Likewise, TCP is layered over IP
+
+- Connections, IP Addresses, and Port Numbers
+ Before an HTTP client can send a message to a server, it needs to establish a TCP/IP connection between the client and server using Internet protocol (IP) addresses and port numbers.
+ In TCP, you need the IP address of the server computer and the TCP port number associated with the specific software program running on the server.
+ but how do you get the IP address and port number of the HTTP server in the first place? Why, the URL
+ Hostnames can easily be converted into IP addresses through a facility called the Domain Name Service (DNS)
+ When the port number is missing from an HTTP URL, you can assume the default value of port 80.
+ With the IP address and port number, a client can easily communicate via TCP/IP.
 
 
-Keep-Alive
-- The keep-alive behavior can be tuned by comma-separated options specified in the Keep-Alive general header:
-- The timeout parameter is sent in a Keep-Alive response header. It estimates how long the server is likely to keep the connection alive for. This is not a guarantee.
-- The max parameter is sent in a Keep-Alive response header. It estimates how many more HTTP transactions the server is likely to keep the connection alive for. This is not a guarantee.
-- The Keep-Alive header also supports arbitrary unprocessed attributes, primarily for diagnostic and debugging purposes. The syntax is name [= value].
-- Keep-alive does not happen by default in HTTP/1.0. The client must send a Connection: Keep-Alive request header to activate keep-alive connections.
+- Keep-Alive
+一次 TCP 连接中完成多个 HTTP 请求，但是对每个请求仍然要单独发 header
+
+- polling 
+是指从客户端（一般就是浏览器）不断主动的向服务器发 HTTP 请求查询是否有新数据
+
+- WebSocket 
+ 通过第一个 HTTP request 建立了 TCP 连接之后，之后的交换数据都不需要再发 HTTP request了，这个长连接变成了一个真.长连接
+ 双通道的连接，在同一个 TCP 连接上既可以发也可以收信息
+
 
 Telnet
 - The Telnet utility connects your keyboard to a destination TCP port and connects the TCP port output back to your display screen. Telnet is commonly used for remote terminal sessions, but it can generally connect to any TCP server, including HTTP servers.
 - You can use the Telnet utility to talk directly to web servers. Telnet lets you open a TCP connection to a port on a machine and type characters directly into the port. The web server treats you as a web client, and any data sent back on the TCP con- nection is displayed onscreen.
-
 
 
 Architectural Components of the Web
@@ -193,15 +197,42 @@ Architectural Components of the Web
  * One popular use of HTTP tunnels is to carry encrypted Secure Sockets Layer (SSL) traffic through an HTTP connection, allowing SSL traffic through corporate fire- walls that permit only web traffic.
 - Agents 
  * Semi-intelligent web clients that make automated HTTP requests
- 
 
+## https
+
+默认端口 443
+
+**数字签名**
+服务端, 明文 -> hash运算, 生成摘要 -> 私钥加密, 生成数字签名 -> 客户端, 公钥解密得到 Digest1, hash运算 得到 Digest2, 比较是否一样
+
+数字签名有两种用途：
+1.能确定消息确实是由发送方签名并发出来的，因为别人假冒不了发送方的签名。
+2.数字签名能确定消息的完整性。
+
+**数字证书**
+验证网站服务器的真实性, 确定得到的公钥一定是从目标主机那里发布的，而且没有被篡改过
+证书里面包含了真实服务器的公钥信息、拥有者身份信息（主体）、以及数字证书机构对这份文件的数字签名，证书机构用自己的私钥加密后发给浏览器，浏览器使用证书机构的公钥解密后得到真实服务器的公钥
+**SSL/TLS**
+　1. 认证用户和服务器，确保数据发送到正确的客户机和服务器；
+　2. 加密数据以防止数据中途被窃取；
+　3. 维护数据的完整性，确保数据在传输过程中不被改变。
+
+- 内容加密
+TLS 加密
+建立一个信息安全通道，来保证数据传输的安全；
+
+- 身份认证
+确认网站的真实性
+
+- 数据完整性
+防止内容被第三方冒充或者篡改
 
 ### Tips 
 
 - Sending Client Data to the Server
-Broadly speaking, your two options for sending client data to the server are the query‐ string and the request body. Normally, if you’re using the querystring, you’re making a GET request, and if you’re using the request body, you’re using a POST request (the HTTP protocol doesn’t prevent you from doing it the other way around, but there’s no point to it: best to stick to standard practice here).
+Two options for sending client data to the server are the query‐ string and the request body. Normally, if you’re using the querystring, you’re making a GET request, and if you’re using the request body, you’re using a POST request.
 
-It is a common misperception that POST is secure and GET is not: in reality, both are secure if you use HTTPS, and neither is secure if you don’t. If you’re not using HTTPS, an intruder can look at the body data for a POST just as easily as the querystring of a GET request. However, if you’re using GET requests, your users will see all of their input (including hidden fields) in the querystring, which is ugly and messy. Also, browsers often place limits on querystring length (there is no such restriction for body length). For these reasons, I generally recommend using POST for form submission.
+It is a common misperception that POST is secure and GET is not: in reality, both are secure if you use HTTPS, and neither is secure if you don’t. If you’re not using HTTPS, an intruder can look at the body data for a POST just as easily as the querystring of a GET request. However, if you’re using GET requests, your users will see all of their input (including hidden fields) in the querystring, which is ugly and messy. Also, browsers often place limits on querystring length (there is no such restriction for body length). For these reasons, I generally recommend using POST for form submission. POST is a little safer than GET because the parameters are not stored in browser history or in web server logs.
 
 
 ## cookie
@@ -209,6 +240,7 @@ It is a common misperception that POST is secure and GET is not: in reality, bot
 一种功能强大且高效的持久身份识别技术
 服务器通过 Set-Cookie 或 Set-Cookie2 HTTP响应头部将 cookie 贴到客户端
 
+## 例子
 
 跟踪了新浪的首页，我们来总结一下HTTP请求的流程：
 

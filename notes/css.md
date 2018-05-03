@@ -258,12 +258,14 @@ BFC, 包含块(Containing block)
 一个css属性值从定义到最终实际使用，是存在一个过程的。这其中涉及到Specified Values（指定值）、Computed Values（计算值）、 Used Values（使用值）、Actual Values（实际值）等概念，可以想见到，百分比值实际会在这个过程中，根据它的参照计算转化为一个绝对值（比如100px），然后再被应用。这就是百分比值的意义。
 
 
-宽和高在使用百分比时, 其参照都是元素的包含块(Containing block). 包含块就是父元素的内容区(盒模型的 content)
+宽和高在使用百分比时, 其参照都是元素的包含块(Containing block).
+包含块就是父元素的内容区(盒模型的 content)
 
-width: 参照父元素 content width
-height:  参照父元素 content height
+width: 参照包含块 content width, 初始值 auto
+height:  参照包含块 content height, 初始值 auto
 
-当一个元素的高度使用百分比, 其父元素没有高度定义时, 且这个元素不是绝对定位, 则该百分比值等同于 auto . 这时子元素的 height 百分比高度是不起作用的，常见的就是 height:100% 无效，而宽度就没有此问题
+当一个元素的高度使用百分比, 其父元素没有高度定义时, 且这个元素不是绝对定位, 则该百分比值等同于 auto . 这时子元素的 height 百分比高度是不起作用的，常见的就是 height:100% 无效，
+宽度就没有此问题
 
 如果元素是根元素(html), 其包含块是视口(viewport) 提供的初始包含块, 初始包含块的高度等于视口高度. 所以, html 标签的高度定义百分比总是有效的. 如果希望在 body 里也用高度百分比, 就一定要先为 html 定义高度.
 

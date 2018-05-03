@@ -88,19 +88,6 @@ this.props 对象的属性与组件的属性一一对应，但是有一个例外
 
 `findDOMNode`  
 
-
-
-### 插件
-
-node-uuid 生成独立的key
-lodash : throttle
-
-### Test
-
-mocha+expect
-
-enzyme
-
 ### lifecycle events
 Lifecycle methods are special methods each component can have that allow us to hook into the views when specific conditions happen (i.e. when the component first renders or when the component gets updated with new data, etc).
 

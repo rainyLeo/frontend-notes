@@ -9,13 +9,7 @@ An observable is a collection of values over time.
 Observers are just objects with three callbacks, one for each type of notification that an Observable may deliver.
 `Observable.subscribe(observer)`
 
----
-
 Reactive programming is programming with asynchronous data streams, streams are so central to Reactive
-
-A stream is a sequence of ongoing events ordered in time. It can emit three different things: a value (of some type), an error, or a "completed" signal
-
-We capture these emitted events only asynchronously, by defining a function that will execute when a value is emitted, another function when an error is emitted, and another function when 'completed' is emitted.
 
 ## 静态方法和实例方法
 
@@ -47,51 +41,12 @@ Static version of combineLatest accepts either an array of Observables or each O
 `create`
 Rx.Observable.create(subscribe)
 
-**arguments**
-subscribe(function):
-
-**return**
-(Observable): The observable sequence with the specified implementation for the subscribe method
-
-```js
-var obs = Rx.Observable.create(function (observer) {
-    observer.onNext(42);
-    observer.onCompleted();
-
-    // Note that this is optional, you do not have to return this if you require no cleanup
-    return function () {
-        console.log('disposed');
-    };
-});
-
-var subscription = obs.subscribe(
-    function (x) {
-        console.log('Next: ' + x);
-    },
-    function (err) {
-        console.log('Error: ' + err);
-    },
-    function () {
-        console.log('Completed');
-    });
-
-// => Next: 42
-// => Completed
-
-subscription.dispose();
-
-// => disposed
-```
-
 `defer`
 `empty`
 
 `for`
 `from`
 Rx.Observable.from(iterable, [mapFn], [thisArg], [scheduler])
-
-This method creates a new Observable sequence from an array-like or iterable object.
-
 `fromCallback`
 `fromEvent`
 `fromEventPattern`
@@ -216,7 +171,7 @@ flatMap = map + mergeAll
 `flatMapFirst` (5.0 `exhaustMap`)
 --1--------------3-----5-----------|-> (inner obs)
 --10--10--10-|->  (source obs)
-    flatMapFirst(i => 10*i--10*i--10*i---|)
+    flatMapFirst(i => 10 * i--10 * i--10 * i---|)
 --10--10--10-----30--30--30------|->
 当前面的流未完成时放弃后面的流
 
@@ -226,7 +181,7 @@ flatMap = map + mergeAll
 
 --1--------------3-----5-----------|-> (inner obs)
 --10--10--10-|->  (source obs)
-    switchMap(i => 10*i--10*i--10*i---|)
+    switchMap(i => 10 * i--10 * i--10 * i---|)
 --10--10--10-----30--3050--50--50--|->
 
 Maps each value to an Observable, then flattens all of these inner Observables using switch.
@@ -368,22 +323,6 @@ Combines the source Observable with other Observables to create an Observable wh
 `create`
 Rx.Observer.create([onNext], [onError], [onCompleted])
 
-`fromNotifier`
-
-#### Observer Instance Methods
-
-`asObserver`
-Rx.Observer.prototype.asObserver()
-
-`checked`
-`notifyOn`
-`onCompleted`
-`onError`
-`onNext`
-`toNotifier`
-
-- [`Rx.Notification`](api/core/notification.md)
-
 `Observable.of` 创建的这个，里面只有一个值，这个值是个数组，所以，订阅它，会得到一个数组
 `Observable.from` 创建的这个，里面有若干个值，每个值是由数组中的元素创建的，订阅它，会一次性得到多个值，但展示的时候只会有最后一个，因为前面的都被覆盖掉了
 
@@ -399,106 +338,22 @@ A Subject is like an Observable, but can multicast to many Observers. Subjects a
 
 The AsyncSubject is a variant where only the last value of the Observable execution is sent to its observers, and only when the execution completes.
 
-```js
-var subject = new Rx.AsyncSubject();
-
-subject.subscribe({
-  next: (v) => console.log('observerA: ' + v)
-});
-
-subject.next(1);
-subject.next(2);
-subject.next(3);
-subject.next(4);
-
-subject.subscribe({
-  next: (v) => console.log('observerB: ' + v)
-});
-
-subject.next(5);
-subject.complete();
-
-// observerA: 5
-// observerB: 5
-```
-
 - Rx.BehaviorSubject
 
 Has a notion of "the current value". It stores the latest value emitted to its consumers, and whenever a new Observer subscribes, it will immediately receive the "current value" from the BehaviorSubject
 
 In the following example, the BehaviorSubject is initialized with the value 0 which the first Observer receives when it subscribes. The second Observer receives the value 2 even though it subscribed after the value 2 was sent.
 
-```js
-var subject = new Rx.BehaviorSubject(0); // 0 is the initial value
-
-subject.subscribe({
-  next: (v) => console.log('observerA: ' + v)
-});
-
-subject.next(1);
-subject.next(2);
-
-subject.subscribe({
-  next: (v) => console.log('observerB: ' + v)
-});
-
-subject.next(3);
-
-// observerA: 0
-// observerA: 1
-// observerA: 2
-// observerB: 2
-// observerA: 3
-// observerB: 3
-```
-
 - Rx.ReplaySubject
 
 A ReplaySubject records multiple values from the Observable execution and replays them to new subscribers.
 
-```js
-var subject = new Rx.ReplaySubject(3, /*window time*/); // buffer 3 values for new subscribers
-
-subject.subscribe({
-  next: (v) => console.log('observerA: ' + v)
-});
-
-subject.next(1);
-subject.next(2);
-subject.next(3);
-subject.next(4);
-
-subject.subscribe({
-  next: (v) => console.log('observerB: ' + v)
-});
-
-subject.next(5);
-
-// observerA: 1
-// observerA: 2
-// observerA: 3
-// observerA: 4
-// observerB: 2
-// observerB: 3
-// observerB: 4
-// observerA: 5
-// observerB: 5
-```
 - Rx.Subject
 
 ### Schedulers
 
-- [`Rx.HistoricalScheduler`](api/schedulers/historicalscheduler.md)
-- [`Rx.Scheduler`](api/schedulers/scheduler.md)
-- [`Rx.VirtualTimeScheduler`](api/schedulers/virtualtimescheduler.md)
 
 ### Disposables
-
-- [`Rx.CompositeDisposable`](api/disposables/compositedisposable.md)
-- [`Rx.Disposable`](api/disposables/disposable.md)
-- [`Rx.RefCountDisposable`](api/disposables/refcountdisposable.md)
-- [`Rx.SerialDisposable`](api/disposables/serialdisposable.md)
-- [`Rx.SingleAssignmentDisposable`](api/disposables/singleassignmentdisposable.md)
 
 # Vue-rx
 
@@ -522,24 +377,6 @@ The subscriptions options can also take a function so that you can return unique
 - `$subscribeTo(observable, next, error, complete)`
 
 - `$fromDOMEvent(selector, event)` (require RxJS)
-
-```js
-data() {
-  return {
-    num: 1
-  }
-},
-
-subscriptions() {
-  return {
-    num$: this.$watchAsObservable('num')
-      .pluck('newValue')
-      .startWith(this.num)
-      .map(a => a + 1)
-      .delay(3000)
-  }
-}
-```
 
 - `this.$watchAsObservable('num')`，把num属性的变动，映射到一个数据流上
 - 这个数据流的结果是一个对象，里面有newValue和oldValue属性，我们通常情况下，要的都是newValue，所以用pluck把它挑出来
@@ -571,9 +408,19 @@ subscription.unsubscribe();
 
 To reduce polymorphism and get better performance out of operators, some operators have been split into more than one operator:
 
+## 理解 Observable
+
+a: = b + c;
+在传统方式下，这是一种一次性的赋值过程，调用一次就结束了，后面b和c再改变，a也不会变了。
+在Reactive的理念中, 不是一次性赋值过程，而是可重复的赋值过程, 每次b或者c产生改变，这个表达式都会被重新计算, "异步的计算属性"
+
+操作符, 数据管道, 拼装组合
+
 ## vs Functions
 
 Subscribing to an Observable is analogous to calling a Function.
+
+Observable are just functions
 
 func.call() means "give me one value synchronously"
 observable.subscribe() means "give me any amount of values, either synchronously or asynchronously"
@@ -582,6 +429,24 @@ observable.subscribe() means "give me any amount of values, either synchronously
 
 Observable is lazy, is canceble, can retry, can have multiple values
 
-A Promise is simply an Observable with one single emitted value. Rx streams go beyond promises by allowing many returned values.
+Promise not lazy, not cancelble, single value
 
-Promise 其实就是只有单独一个值 的 Observable ，但后者更胜一筹的是允许多个返回值（多次 emit）
+## hot vs cold observables
+
+* Observables are cold by default
+* Cold observables create a new producer each time a consumer subscribes to them
+* Hot observables share a single producer with every consumer that subscribes to them
+
+## what's bad in RxJS
+
+* "Zalgo"..don't use mutable outer scoped variables in your operators or subscriptions
+* Unbounded buffers! The zip operator in particular is dangerous here
+* Too many operators to remember
+
+## Use Rx where it's best suited
+
+* composing multiple events together
+* coordinating async tasks
+* adding delay
+* clientside rate limiting
+* when cancellation is required

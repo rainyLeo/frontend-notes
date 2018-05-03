@@ -13,7 +13,6 @@
 	- a web server
 
 
-
 ## 模块
 
 当模块的文件名是 index.js，加载模块时可以使用模块所在目录的路径代替模块文件路径, 以下等价
@@ -32,6 +31,7 @@ var cat = require('/home/user/lib/cat/index');
 
 **变量**
 - `exports` 是指向 module.exports 的一个引用, 只用 module.exports 就行了
+exports 不能被重写, module.exports 优先级高
 - `process` 全局对象, 代表当前 Node.js process, 不需要 require
 部分属性
 process.pid 进程pid

@@ -593,10 +593,11 @@ values('rainyLeo',
 insert into customers(
   ...
 )
-values(
+values
+(
   ...
 ),
-values(
+(
   ...
 );
 ```

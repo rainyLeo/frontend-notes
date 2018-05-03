@@ -1,4 +1,5 @@
 ## 性能优化
+
 1. http 请求数量
  - 减少请求数量: 合并文件, CSS sprites, data: URL(base64), 避免空的 src
  拆分初始化负载(将页面一开始加载时不需要执行的资源从所有资源中分离出来，等到需要的时候再加载), 划分主域
@@ -19,6 +20,13 @@
 
 
 4. 代码结构
+
+浏览器下载 JS 是并行的, 按照script标签的顺序依次执行, 下载和执行会阻塞 dom 树解析 
+CSS 并行下载, 下载和执行会阻塞 dom
+
+下载是其他线程, 但渲染和执行JS都是主线程(单线程)
+图片和其他资源并不会和（必要css，js资源）并行下载，构建dom 和 cssom的时候才开始下载
+
  - CSS 样式放上面(网页逐步渲染, 避免无样式内容的闪烁), JS 放底部
  (CSS: browsers won't render your page before loading the CSS (to avoid a flash of unstyled content)
  (JS: block browsers from parsing after the tag before it is loaded and complete)
